@@ -1,99 +1,119 @@
-# 🌐 Raigam SFA Web App
+# Shadcn Admin Dashboard
 
-**Company:** The Kingdom of Raigam  
-**Application Name:** Raigam SFA Web App
+Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and accessibility in mind.
 
-## 📋 Overview
+![alt text](public/images/shadcn-admin.png)
 
-**Raigam SFA Web App** is an industrial **Sales Force Automation (SFA)** web application developed for **Raigam – The Kingdom of Raigam**.  
-The system is designed to streamline and digitize sales operations, enhance productivity, and provide real-time insights into sales performance and distribution activities.
+[![Sponsored by Clerk](https://img.shields.io/badge/Sponsored%20by-Clerk-5b6ee1?logo=clerk)](https://go.clerk.com/GttUAaK)
 
-## 🚀 Features
+I've been creating dashboard UIs at work and for my personal projects. I always wanted to make a reusable collection of dashboard UI for future projects; and here it is now. While I've created a few custom components, some of the code is directly adapted from ShadcnUI examples.
 
-- 🔐 **Role-based user access** (System Admin, Sales Managers, Field Agents, etc.)
-- 📊 **Dashboard & analytics** for performance tracking
-- 🗺️ **Sales territory management**
-- 🧾 **Invoice and stock viewing**
-- 📍 **Outlet and customer module**
-- 🎯 **Target and sales operations management**
+> This is not a starter project (template) though. I'll probably make one in the future.
 
-## 🛠️ Tech Stack
+## Features
 
-**Frontend:** React.js, Vite, TypeScript, Tailwind CSS, shadcn/ui  
-**Backend:** Spring Boot, Java  
-**Database:** MySQL  
-**Authentication:** JWT (Access + Refresh Tokens)  
-**Deployment:** Docker / Cloud Deployment (as applicable)
+- Light/dark mode
+- Responsive
+- Accessible
+- With built-in Sidebar component
+- Global search command
+- 10+ pages
+- Extra custom components
+- RTL support
 
-## ⚡ Getting Started (React + Vite)
+<details>
+<summary>Customized Components (click to expand)</summary>
 
-Follow these steps to set up the project locally:
+This project uses Shadcn UI components, but some have been slightly modified for better RTL (Right-to-Left) support and other improvements. These customized components differ from the original Shadcn UI versions.
 
-1. **Clone the repository**
+If you want to update components using the Shadcn CLI (e.g., `npx shadcn@latest add <component>`), it's generally safe for non-customized components. For the listed customized ones, you may need to manually merge changes to preserve the project's modifications and avoid overwriting RTL support or other updates.
+
+> If you don't require RTL support, you can safely update the 'RTL Updated Components' via the Shadcn CLI, as these changes are primarily for RTL compatibility. The 'Modified Components' may have other customizations to consider.
+
+### Modified Components
+
+- scroll-area
+- sonner
+- separator
+
+### RTL Updated Components
+
+- alert-dialog
+- calendar
+- command
+- dialog
+- dropdown-menu
+- select
+- table
+- sheet
+- sidebar
+- switch
+
+**Notes:**
+
+- **Modified Components**: These have general updates, potentially including RTL adjustments.
+- **RTL Updated Components**: These have specific changes for RTL language support (e.g., layout, positioning).
+- For implementation details, check the source files in `src/components/ui/`.
+- All other Shadcn UI components in the project are standard and can be safely updated via the CLI.
+
+</details>
+
+## Tech Stack
+
+**UI:** [ShadcnUI](https://ui.shadcn.com) (TailwindCSS + RadixUI)
+
+**Build Tool:** [Vite](https://vitejs.dev/)
+
+**Routing:** [TanStack Router](https://tanstack.com/router/latest)
+
+**Type Checking:** [TypeScript](https://www.typescriptlang.org/)
+
+**Linting/Formatting:** [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/)
+
+**Icons:** [Lucide Icons](https://lucide.dev/icons/), [Tabler Icons](https://tabler.io/icons) (Brand icons only)
+
+**Auth (partial):** [Clerk](https://go.clerk.com/GttUAaK)
+
+## Run Locally
+
+Clone the project
 
 ```bash
-git clone https://github.com/your-repo/raigam-sfa-web.git
-cd raigam-sfa-web
+  git clone https://github.com/satnaing/shadcn-admin.git
 ```
 
-2. **Install dependencies**
+Go to the project directory
 
 ```bash
-npm install
+  cd shadcn-admin
 ```
 
-3. **Run the development server**
+Install dependencies
 
 ```bash
-npm run dev
+  pnpm install
 ```
 
-- By default, Vite runs at: `http://localhost:5173`
-
-4. **Build for production**
+Start the server
 
 ```bash
-npm run build
+  pnpm run dev
 ```
 
-- The production build output will be in the `dist/` folder.
+## Sponsoring this project ❤️
 
-5. **Preview production build locally**
+If you find this project helpful or use this in your own work, consider [sponsoring me](https://github.com/sponsors/satnaing) to support development and maintenance. You can [buy me a coffee](https://buymeacoffee.com/satnaing) as well. Don’t worry, every penny helps. Thank you! 🙏
 
-```bash
-npm run preview
-```
+For questions or sponsorship inquiries, feel free to reach out at [satnaingdev@gmail.com](mailto:satnaingdev@gmail.com).
 
-## 🌱 Environment Variables
+### Current Sponsor
 
-Create a `.env` file in the root of the project to manage environment-specific variables, e.g., API endpoints, keys, or feature flags.
+- [Clerk](https://go.clerk.com/GttUAaK) - authentication and user management for the modern web
 
-Example `.env` for development:
+## Author
 
-```env
-VITE_API_BASE_URL=http://localhost:8080/api
-VITE_AUTH_TOKEN_KEY=raigam_token_dev
-VITE_APP_ENV=development
-```
+Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
 
-Example `.env.production` for production:
+## License
 
-```env
-VITE_API_BASE_URL=https://api.raigam.com
-VITE_AUTH_TOKEN_KEY=raigam_token_prod
-VITE_APP_ENV=production
-```
-
-> **Note:** All Vite environment variables must start with `VITE_` to be exposed to the frontend code.
-
-Access variables in React:
-
-```ts
-const apiUrl = import.meta.env.VITE_API_BASE_URL
-const tokenKey = import.meta.env.VITE_AUTH_TOKEN_KEY
-```
-
-## 👥 Team & Ownership
-
-This project is developed and maintained by **Raigam IT Department – The Kingdom of Raigam**  
-All rights reserved © 2025 Raigam.
+Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
