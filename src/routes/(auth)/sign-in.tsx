@@ -12,7 +12,7 @@ export const Route = createFileRoute('/(auth)/sign-in')({
     const token = getAccessToken()
     const refresh = getRefreshToken()
     if (token || refresh) {
-      throw redirect({ to: '/', replace: true })
+      throw redirect({ to: '/dashboard/home-report', replace: true })
     }
   },
   component: SignIn,

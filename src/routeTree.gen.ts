@@ -11,7 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ClerkRouteRouteImport } from './routes/clerk/route'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as authRouteRouteImport } from './routes/(auth)/route'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as ErrorsUnauthorizedRouteImport } from './routes/errors/unauthorized'
+import { Route as ErrorsNotFoundRouteImport } from './routes/errors/not-found'
+import { Route as ErrorsMaintenanceErrorRouteImport } from './routes/errors/maintenance-error'
+import { Route as ErrorsInternalServerErrorRouteImport } from './routes/errors/internal-server-error'
+import { Route as ErrorsForbiddenRouteImport } from './routes/errors/forbidden'
+import { Route as AuthenticatedRestRouteImport } from './routes/_authenticated/$rest'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors404RouteImport } from './routes/(errors)/404'
@@ -21,6 +28,7 @@ import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
 import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_authenticated/route'
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
+import { Route as AuthenticatedOutletModuleRouteRouteImport } from './routes/_authenticated/outlet-module/route'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
@@ -34,7 +42,44 @@ import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
+import { Route as AuthenticatedReportsTerritoryWiseSalesReportRouteImport } from './routes/_authenticated/reports/territory-wise-sales-report'
+import { Route as AuthenticatedReportsTerritoryWiseItemsReportRouteImport } from './routes/_authenticated/reports/territory-wise-items-report'
+import { Route as AuthenticatedReportsItemSummaryReportRouteImport } from './routes/_authenticated/reports/item-summary-report'
+import { Route as AuthenticatedReportsAreaWiseSalesReportRouteImport } from './routes/_authenticated/reports/area-wise-sales-report'
+import { Route as AuthenticatedReportsAchievementCategoryWiseRouteImport } from './routes/_authenticated/reports/achievement-category-wise'
+import { Route as AuthenticatedOutletModuleCustomerRouteImport } from './routes/_authenticated/outlet-module/customer'
+import { Route as AuthenticatedMasterSettingsFinalGeographyMappingRouteImport } from './routes/_authenticated/master-settings/final-geography-mapping'
+import { Route as AuthenticatedMasterSettingsDistributorMappingRouteImport } from './routes/_authenticated/master-settings/distributor-mapping'
+import { Route as AuthenticatedMasterSettingsDemarcationRouteImport } from './routes/_authenticated/master-settings/demarcation'
+import { Route as AuthenticatedHrModuleTimeAttendanceRouteImport } from './routes/_authenticated/hr-module/time-attendance'
+import { Route as AuthenticatedHrModuleGpsMonitoringRouteImport } from './routes/_authenticated/hr-module/gps-monitoring'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+import { Route as AuthenticatedDashboardHomeReportRouteImport } from './routes/_authenticated/dashboard/home-report'
+import { Route as AuthenticatedDashboardHeartCountRouteImport } from './routes/_authenticated/dashboard/heart-count'
+import { Route as AuthenticatedDashboardRestRouteImport } from './routes/_authenticated/dashboard/$rest'
+import { Route as AuthenticatedSalesSalesOperationsWorkingDayRouteImport } from './routes/_authenticated/sales/sales-operations/working-day'
+import { Route as AuthenticatedSalesSalesOperationsTargetRouteImport } from './routes/_authenticated/sales/sales-operations/target'
+import { Route as AuthenticatedSalesSalesOperationsItemMasterRouteImport } from './routes/_authenticated/sales/sales-operations/item-master'
+import { Route as AuthenticatedSalesSalesOperationsItemAddRouteImport } from './routes/_authenticated/sales/sales-operations/item-add'
+import { Route as AuthenticatedSalesSalesOperationsFreeIssueRouteImport } from './routes/_authenticated/sales/sales-operations/free-issue'
+import { Route as AuthenticatedSalesSalesOperationsCategoryAddRouteImport } from './routes/_authenticated/sales/sales-operations/category-add'
+import { Route as AuthenticatedSalesSalesDetailsViewItemRangeWiseRouteImport } from './routes/_authenticated/sales/sales-details/view-item-range-wise'
+import { Route as AuthenticatedSalesSalesDetailsViewInvoicesRouteImport } from './routes/_authenticated/sales/sales-details/view-invoices'
+import { Route as AuthenticatedSalesSalesDetailsStockRouteImport } from './routes/_authenticated/sales/sales-details/stock'
+import { Route as AuthenticatedSalesSalesDetailsMarketReturnRouteImport } from './routes/_authenticated/sales/sales-details/market-return'
+import { Route as AuthenticatedAgencyModuleStockViewStockRouteImport } from './routes/_authenticated/agency-module/stock/view-stock'
+import { Route as AuthenticatedAgencyModuleStockRequestOrderRouteImport } from './routes/_authenticated/agency-module/stock/request-order'
+import { Route as AuthenticatedAgencyModuleStockAddStockRouteImport } from './routes/_authenticated/agency-module/stock/add-stock'
+import { Route as AuthenticatedAgencyModuleMarketReturnReturnRouteImport } from './routes/_authenticated/agency-module/market-return/return'
+import { Route as AuthenticatedAgencyModuleLoadingListViewLoadingListRouteImport } from './routes/_authenticated/agency-module/loading-list/view-loading-list'
+import { Route as AuthenticatedAgencyModuleInvoiceViewInvoiceRouteImport } from './routes/_authenticated/agency-module/invoice/view-invoice'
+import { Route as AuthenticatedAgencyModuleInvoicePostInvoiceRouteImport } from './routes/_authenticated/agency-module/invoice/post-invoice'
+import { Route as AuthenticatedAgencyModuleInvoiceManualInvoiceRouteImport } from './routes/_authenticated/agency-module/invoice/manual-invoice'
+import { Route as AuthenticatedAgencyModuleInvoiceActualInvoiceRouteImport } from './routes/_authenticated/agency-module/invoice/actual-invoice'
+import { Route as AuthenticatedAgencyModuleDashboardMonthlyTargetRouteImport } from './routes/_authenticated/agency-module/dashboard/monthly-target'
+import { Route as AuthenticatedAdminModuleUserModuleAddModifiyUserRouteImport } from './routes/_authenticated/admin-module/user-module/add-modifiy-user'
+import { Route as AuthenticatedAdminModuleOperationReverseRequestsRouteImport } from './routes/_authenticated/admin-module/operation/reverse-requests'
+import { Route as AuthenticatedAdminModuleOperationManualBillQuotaRouteImport } from './routes/_authenticated/admin-module/operation/manual-bill-quota'
 
 const ClerkRouteRoute = ClerkRouteRouteImport.update({
   id: '/clerk',
@@ -45,9 +90,44 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const authRouteRoute = authRouteRouteImport.update({
+  id: '/(auth)',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ErrorsUnauthorizedRoute = ErrorsUnauthorizedRouteImport.update({
+  id: '/errors/unauthorized',
+  path: '/errors/unauthorized',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ErrorsNotFoundRoute = ErrorsNotFoundRouteImport.update({
+  id: '/errors/not-found',
+  path: '/errors/not-found',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ErrorsMaintenanceErrorRoute = ErrorsMaintenanceErrorRouteImport.update({
+  id: '/errors/maintenance-error',
+  path: '/errors/maintenance-error',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ErrorsInternalServerErrorRoute =
+  ErrorsInternalServerErrorRouteImport.update({
+    id: '/errors/internal-server-error',
+    path: '/errors/internal-server-error',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ErrorsForbiddenRoute = ErrorsForbiddenRouteImport.update({
+  id: '/errors/forbidden',
+  path: '/errors/forbidden',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRestRoute = AuthenticatedRestRouteImport.update({
+  id: '/$rest',
+  path: '/$rest',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const errors503Route = errors503RouteImport.update({
@@ -76,9 +156,9 @@ const errors401Route = errors401RouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const authSignInRoute = authSignInRouteImport.update({
-  id: '/(auth)/sign-in',
+  id: '/sign-in',
   path: '/sign-in',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => authRouteRoute,
 } as any)
 const ClerkAuthenticatedRouteRoute = ClerkAuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -92,6 +172,12 @@ const AuthenticatedSettingsRouteRoute =
   AuthenticatedSettingsRouteRouteImport.update({
     id: '/settings',
     path: '/settings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOutletModuleRouteRoute =
+  AuthenticatedOutletModuleRouteRouteImport.update({
+    id: '/outlet-module',
+    path: '/outlet-module',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
@@ -166,15 +252,238 @@ const AuthenticatedSettingsAccountRoute =
     path: '/account',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedReportsTerritoryWiseSalesReportRoute =
+  AuthenticatedReportsTerritoryWiseSalesReportRouteImport.update({
+    id: '/reports/territory-wise-sales-report',
+    path: '/reports/territory-wise-sales-report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsTerritoryWiseItemsReportRoute =
+  AuthenticatedReportsTerritoryWiseItemsReportRouteImport.update({
+    id: '/reports/territory-wise-items-report',
+    path: '/reports/territory-wise-items-report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsItemSummaryReportRoute =
+  AuthenticatedReportsItemSummaryReportRouteImport.update({
+    id: '/reports/item-summary-report',
+    path: '/reports/item-summary-report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsAreaWiseSalesReportRoute =
+  AuthenticatedReportsAreaWiseSalesReportRouteImport.update({
+    id: '/reports/area-wise-sales-report',
+    path: '/reports/area-wise-sales-report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsAchievementCategoryWiseRoute =
+  AuthenticatedReportsAchievementCategoryWiseRouteImport.update({
+    id: '/reports/achievement-category-wise',
+    path: '/reports/achievement-category-wise',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOutletModuleCustomerRoute =
+  AuthenticatedOutletModuleCustomerRouteImport.update({
+    id: '/customer',
+    path: '/customer',
+    getParentRoute: () => AuthenticatedOutletModuleRouteRoute,
+  } as any)
+const AuthenticatedMasterSettingsFinalGeographyMappingRoute =
+  AuthenticatedMasterSettingsFinalGeographyMappingRouteImport.update({
+    id: '/master-settings/final-geography-mapping',
+    path: '/master-settings/final-geography-mapping',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMasterSettingsDistributorMappingRoute =
+  AuthenticatedMasterSettingsDistributorMappingRouteImport.update({
+    id: '/master-settings/distributor-mapping',
+    path: '/master-settings/distributor-mapping',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMasterSettingsDemarcationRoute =
+  AuthenticatedMasterSettingsDemarcationRouteImport.update({
+    id: '/master-settings/demarcation',
+    path: '/master-settings/demarcation',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedHrModuleTimeAttendanceRoute =
+  AuthenticatedHrModuleTimeAttendanceRouteImport.update({
+    id: '/hr-module/time-attendance',
+    path: '/hr-module/time-attendance',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedHrModuleGpsMonitoringRoute =
+  AuthenticatedHrModuleGpsMonitoringRouteImport.update({
+    id: '/hr-module/gps-monitoring',
+    path: '/hr-module/gps-monitoring',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
     path: '/errors/$error',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedDashboardHomeReportRoute =
+  AuthenticatedDashboardHomeReportRouteImport.update({
+    id: '/dashboard/home-report',
+    path: '/dashboard/home-report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardHeartCountRoute =
+  AuthenticatedDashboardHeartCountRouteImport.update({
+    id: '/dashboard/heart-count',
+    path: '/dashboard/heart-count',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardRestRoute =
+  AuthenticatedDashboardRestRouteImport.update({
+    id: '/dashboard/$rest',
+    path: '/dashboard/$rest',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesOperationsWorkingDayRoute =
+  AuthenticatedSalesSalesOperationsWorkingDayRouteImport.update({
+    id: '/sales/sales-operations/working-day',
+    path: '/sales/sales-operations/working-day',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesOperationsTargetRoute =
+  AuthenticatedSalesSalesOperationsTargetRouteImport.update({
+    id: '/sales/sales-operations/target',
+    path: '/sales/sales-operations/target',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesOperationsItemMasterRoute =
+  AuthenticatedSalesSalesOperationsItemMasterRouteImport.update({
+    id: '/sales/sales-operations/item-master',
+    path: '/sales/sales-operations/item-master',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesOperationsItemAddRoute =
+  AuthenticatedSalesSalesOperationsItemAddRouteImport.update({
+    id: '/sales/sales-operations/item-add',
+    path: '/sales/sales-operations/item-add',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesOperationsFreeIssueRoute =
+  AuthenticatedSalesSalesOperationsFreeIssueRouteImport.update({
+    id: '/sales/sales-operations/free-issue',
+    path: '/sales/sales-operations/free-issue',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesOperationsCategoryAddRoute =
+  AuthenticatedSalesSalesOperationsCategoryAddRouteImport.update({
+    id: '/sales/sales-operations/category-add',
+    path: '/sales/sales-operations/category-add',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute =
+  AuthenticatedSalesSalesDetailsViewItemRangeWiseRouteImport.update({
+    id: '/sales/sales-details/view-item-range-wise',
+    path: '/sales/sales-details/view-item-range-wise',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesDetailsViewInvoicesRoute =
+  AuthenticatedSalesSalesDetailsViewInvoicesRouteImport.update({
+    id: '/sales/sales-details/view-invoices',
+    path: '/sales/sales-details/view-invoices',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesDetailsStockRoute =
+  AuthenticatedSalesSalesDetailsStockRouteImport.update({
+    id: '/sales/sales-details/stock',
+    path: '/sales/sales-details/stock',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesSalesDetailsMarketReturnRoute =
+  AuthenticatedSalesSalesDetailsMarketReturnRouteImport.update({
+    id: '/sales/sales-details/market-return',
+    path: '/sales/sales-details/market-return',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleStockViewStockRoute =
+  AuthenticatedAgencyModuleStockViewStockRouteImport.update({
+    id: '/agency-module/stock/view-stock',
+    path: '/agency-module/stock/view-stock',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleStockRequestOrderRoute =
+  AuthenticatedAgencyModuleStockRequestOrderRouteImport.update({
+    id: '/agency-module/stock/request-order',
+    path: '/agency-module/stock/request-order',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleStockAddStockRoute =
+  AuthenticatedAgencyModuleStockAddStockRouteImport.update({
+    id: '/agency-module/stock/add-stock',
+    path: '/agency-module/stock/add-stock',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleMarketReturnReturnRoute =
+  AuthenticatedAgencyModuleMarketReturnReturnRouteImport.update({
+    id: '/agency-module/market-return/return',
+    path: '/agency-module/market-return/return',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleLoadingListViewLoadingListRoute =
+  AuthenticatedAgencyModuleLoadingListViewLoadingListRouteImport.update({
+    id: '/agency-module/loading-list/view-loading-list',
+    path: '/agency-module/loading-list/view-loading-list',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleInvoiceViewInvoiceRoute =
+  AuthenticatedAgencyModuleInvoiceViewInvoiceRouteImport.update({
+    id: '/agency-module/invoice/view-invoice',
+    path: '/agency-module/invoice/view-invoice',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleInvoicePostInvoiceRoute =
+  AuthenticatedAgencyModuleInvoicePostInvoiceRouteImport.update({
+    id: '/agency-module/invoice/post-invoice',
+    path: '/agency-module/invoice/post-invoice',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleInvoiceManualInvoiceRoute =
+  AuthenticatedAgencyModuleInvoiceManualInvoiceRouteImport.update({
+    id: '/agency-module/invoice/manual-invoice',
+    path: '/agency-module/invoice/manual-invoice',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleInvoiceActualInvoiceRoute =
+  AuthenticatedAgencyModuleInvoiceActualInvoiceRouteImport.update({
+    id: '/agency-module/invoice/actual-invoice',
+    path: '/agency-module/invoice/actual-invoice',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAgencyModuleDashboardMonthlyTargetRoute =
+  AuthenticatedAgencyModuleDashboardMonthlyTargetRouteImport.update({
+    id: '/agency-module/dashboard/monthly-target',
+    path: '/agency-module/dashboard/monthly-target',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminModuleUserModuleAddModifiyUserRoute =
+  AuthenticatedAdminModuleUserModuleAddModifiyUserRouteImport.update({
+    id: '/admin-module/user-module/add-modifiy-user',
+    path: '/admin-module/user-module/add-modifiy-user',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminModuleOperationReverseRequestsRoute =
+  AuthenticatedAdminModuleOperationReverseRequestsRouteImport.update({
+    id: '/admin-module/operation/reverse-requests',
+    path: '/admin-module/operation/reverse-requests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminModuleOperationManualBillQuotaRoute =
+  AuthenticatedAdminModuleOperationManualBillQuotaRouteImport.update({
+    id: '/admin-module/operation/manual-bill-quota',
+    path: '/admin-module/operation/manual-bill-quota',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
+  '/outlet-module': typeof AuthenticatedOutletModuleRouteRouteWithChildren
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/sign-in': typeof authSignInRoute
   '/401': typeof errors401Route
@@ -182,8 +491,28 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/$rest': typeof AuthenticatedRestRoute
+  '/errors/forbidden': typeof ErrorsForbiddenRoute
+  '/errors/internal-server-error': typeof ErrorsInternalServerErrorRoute
+  '/errors/maintenance-error': typeof ErrorsMaintenanceErrorRoute
+  '/errors/not-found': typeof ErrorsNotFoundRoute
+  '/errors/unauthorized': typeof ErrorsUnauthorizedRoute
   '/': typeof AuthenticatedIndexRoute
+  '/dashboard/$rest': typeof AuthenticatedDashboardRestRoute
+  '/dashboard/heart-count': typeof AuthenticatedDashboardHeartCountRoute
+  '/dashboard/home-report': typeof AuthenticatedDashboardHomeReportRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/hr-module/gps-monitoring': typeof AuthenticatedHrModuleGpsMonitoringRoute
+  '/hr-module/time-attendance': typeof AuthenticatedHrModuleTimeAttendanceRoute
+  '/master-settings/demarcation': typeof AuthenticatedMasterSettingsDemarcationRoute
+  '/master-settings/distributor-mapping': typeof AuthenticatedMasterSettingsDistributorMappingRoute
+  '/master-settings/final-geography-mapping': typeof AuthenticatedMasterSettingsFinalGeographyMappingRoute
+  '/outlet-module/customer': typeof AuthenticatedOutletModuleCustomerRoute
+  '/reports/achievement-category-wise': typeof AuthenticatedReportsAchievementCategoryWiseRoute
+  '/reports/area-wise-sales-report': typeof AuthenticatedReportsAreaWiseSalesReportRoute
+  '/reports/item-summary-report': typeof AuthenticatedReportsItemSummaryReportRoute
+  '/reports/territory-wise-items-report': typeof AuthenticatedReportsTerritoryWiseItemsReportRoute
+  '/reports/territory-wise-sales-report': typeof AuthenticatedReportsTerritoryWiseSalesReportRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -197,17 +526,61 @@ export interface FileRoutesByFullPath {
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
+  '/admin-module/operation/manual-bill-quota': typeof AuthenticatedAdminModuleOperationManualBillQuotaRoute
+  '/admin-module/operation/reverse-requests': typeof AuthenticatedAdminModuleOperationReverseRequestsRoute
+  '/admin-module/user-module/add-modifiy-user': typeof AuthenticatedAdminModuleUserModuleAddModifiyUserRoute
+  '/agency-module/dashboard/monthly-target': typeof AuthenticatedAgencyModuleDashboardMonthlyTargetRoute
+  '/agency-module/invoice/actual-invoice': typeof AuthenticatedAgencyModuleInvoiceActualInvoiceRoute
+  '/agency-module/invoice/manual-invoice': typeof AuthenticatedAgencyModuleInvoiceManualInvoiceRoute
+  '/agency-module/invoice/post-invoice': typeof AuthenticatedAgencyModuleInvoicePostInvoiceRoute
+  '/agency-module/invoice/view-invoice': typeof AuthenticatedAgencyModuleInvoiceViewInvoiceRoute
+  '/agency-module/loading-list/view-loading-list': typeof AuthenticatedAgencyModuleLoadingListViewLoadingListRoute
+  '/agency-module/market-return/return': typeof AuthenticatedAgencyModuleMarketReturnReturnRoute
+  '/agency-module/stock/add-stock': typeof AuthenticatedAgencyModuleStockAddStockRoute
+  '/agency-module/stock/request-order': typeof AuthenticatedAgencyModuleStockRequestOrderRoute
+  '/agency-module/stock/view-stock': typeof AuthenticatedAgencyModuleStockViewStockRoute
+  '/sales/sales-details/market-return': typeof AuthenticatedSalesSalesDetailsMarketReturnRoute
+  '/sales/sales-details/stock': typeof AuthenticatedSalesSalesDetailsStockRoute
+  '/sales/sales-details/view-invoices': typeof AuthenticatedSalesSalesDetailsViewInvoicesRoute
+  '/sales/sales-details/view-item-range-wise': typeof AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute
+  '/sales/sales-operations/category-add': typeof AuthenticatedSalesSalesOperationsCategoryAddRoute
+  '/sales/sales-operations/free-issue': typeof AuthenticatedSalesSalesOperationsFreeIssueRoute
+  '/sales/sales-operations/item-add': typeof AuthenticatedSalesSalesOperationsItemAddRoute
+  '/sales/sales-operations/item-master': typeof AuthenticatedSalesSalesOperationsItemMasterRoute
+  '/sales/sales-operations/target': typeof AuthenticatedSalesSalesOperationsTargetRoute
+  '/sales/sales-operations/working-day': typeof AuthenticatedSalesSalesOperationsWorkingDayRoute
 }
 export interface FileRoutesByTo {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
+  '/outlet-module': typeof AuthenticatedOutletModuleRouteRouteWithChildren
   '/sign-in': typeof authSignInRoute
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/$rest': typeof AuthenticatedRestRoute
+  '/errors/forbidden': typeof ErrorsForbiddenRoute
+  '/errors/internal-server-error': typeof ErrorsInternalServerErrorRoute
+  '/errors/maintenance-error': typeof ErrorsMaintenanceErrorRoute
+  '/errors/not-found': typeof ErrorsNotFoundRoute
+  '/errors/unauthorized': typeof ErrorsUnauthorizedRoute
   '/': typeof AuthenticatedIndexRoute
+  '/dashboard/$rest': typeof AuthenticatedDashboardRestRoute
+  '/dashboard/heart-count': typeof AuthenticatedDashboardHeartCountRoute
+  '/dashboard/home-report': typeof AuthenticatedDashboardHomeReportRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/hr-module/gps-monitoring': typeof AuthenticatedHrModuleGpsMonitoringRoute
+  '/hr-module/time-attendance': typeof AuthenticatedHrModuleTimeAttendanceRoute
+  '/master-settings/demarcation': typeof AuthenticatedMasterSettingsDemarcationRoute
+  '/master-settings/distributor-mapping': typeof AuthenticatedMasterSettingsDistributorMappingRoute
+  '/master-settings/final-geography-mapping': typeof AuthenticatedMasterSettingsFinalGeographyMappingRoute
+  '/outlet-module/customer': typeof AuthenticatedOutletModuleCustomerRoute
+  '/reports/achievement-category-wise': typeof AuthenticatedReportsAchievementCategoryWiseRoute
+  '/reports/area-wise-sales-report': typeof AuthenticatedReportsAreaWiseSalesReportRoute
+  '/reports/item-summary-report': typeof AuthenticatedReportsItemSummaryReportRoute
+  '/reports/territory-wise-items-report': typeof AuthenticatedReportsTerritoryWiseItemsReportRoute
+  '/reports/territory-wise-sales-report': typeof AuthenticatedReportsTerritoryWiseSalesReportRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -221,11 +594,36 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
+  '/admin-module/operation/manual-bill-quota': typeof AuthenticatedAdminModuleOperationManualBillQuotaRoute
+  '/admin-module/operation/reverse-requests': typeof AuthenticatedAdminModuleOperationReverseRequestsRoute
+  '/admin-module/user-module/add-modifiy-user': typeof AuthenticatedAdminModuleUserModuleAddModifiyUserRoute
+  '/agency-module/dashboard/monthly-target': typeof AuthenticatedAgencyModuleDashboardMonthlyTargetRoute
+  '/agency-module/invoice/actual-invoice': typeof AuthenticatedAgencyModuleInvoiceActualInvoiceRoute
+  '/agency-module/invoice/manual-invoice': typeof AuthenticatedAgencyModuleInvoiceManualInvoiceRoute
+  '/agency-module/invoice/post-invoice': typeof AuthenticatedAgencyModuleInvoicePostInvoiceRoute
+  '/agency-module/invoice/view-invoice': typeof AuthenticatedAgencyModuleInvoiceViewInvoiceRoute
+  '/agency-module/loading-list/view-loading-list': typeof AuthenticatedAgencyModuleLoadingListViewLoadingListRoute
+  '/agency-module/market-return/return': typeof AuthenticatedAgencyModuleMarketReturnReturnRoute
+  '/agency-module/stock/add-stock': typeof AuthenticatedAgencyModuleStockAddStockRoute
+  '/agency-module/stock/request-order': typeof AuthenticatedAgencyModuleStockRequestOrderRoute
+  '/agency-module/stock/view-stock': typeof AuthenticatedAgencyModuleStockViewStockRoute
+  '/sales/sales-details/market-return': typeof AuthenticatedSalesSalesDetailsMarketReturnRoute
+  '/sales/sales-details/stock': typeof AuthenticatedSalesSalesDetailsStockRoute
+  '/sales/sales-details/view-invoices': typeof AuthenticatedSalesSalesDetailsViewInvoicesRoute
+  '/sales/sales-details/view-item-range-wise': typeof AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute
+  '/sales/sales-operations/category-add': typeof AuthenticatedSalesSalesOperationsCategoryAddRoute
+  '/sales/sales-operations/free-issue': typeof AuthenticatedSalesSalesOperationsFreeIssueRoute
+  '/sales/sales-operations/item-add': typeof AuthenticatedSalesSalesOperationsItemAddRoute
+  '/sales/sales-operations/item-master': typeof AuthenticatedSalesSalesOperationsItemMasterRoute
+  '/sales/sales-operations/target': typeof AuthenticatedSalesSalesOperationsTargetRoute
+  '/sales/sales-operations/working-day': typeof AuthenticatedSalesSalesOperationsWorkingDayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/(auth)': typeof authRouteRouteWithChildren
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/clerk': typeof ClerkRouteRouteWithChildren
+  '/_authenticated/outlet-module': typeof AuthenticatedOutletModuleRouteRouteWithChildren
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/clerk/(auth)': typeof ClerkauthRouteRouteWithChildren
   '/clerk/_authenticated': typeof ClerkAuthenticatedRouteRouteWithChildren
@@ -235,8 +633,28 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
+  '/_authenticated/$rest': typeof AuthenticatedRestRoute
+  '/errors/forbidden': typeof ErrorsForbiddenRoute
+  '/errors/internal-server-error': typeof ErrorsInternalServerErrorRoute
+  '/errors/maintenance-error': typeof ErrorsMaintenanceErrorRoute
+  '/errors/not-found': typeof ErrorsNotFoundRoute
+  '/errors/unauthorized': typeof ErrorsUnauthorizedRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/dashboard/$rest': typeof AuthenticatedDashboardRestRoute
+  '/_authenticated/dashboard/heart-count': typeof AuthenticatedDashboardHeartCountRoute
+  '/_authenticated/dashboard/home-report': typeof AuthenticatedDashboardHomeReportRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/hr-module/gps-monitoring': typeof AuthenticatedHrModuleGpsMonitoringRoute
+  '/_authenticated/hr-module/time-attendance': typeof AuthenticatedHrModuleTimeAttendanceRoute
+  '/_authenticated/master-settings/demarcation': typeof AuthenticatedMasterSettingsDemarcationRoute
+  '/_authenticated/master-settings/distributor-mapping': typeof AuthenticatedMasterSettingsDistributorMappingRoute
+  '/_authenticated/master-settings/final-geography-mapping': typeof AuthenticatedMasterSettingsFinalGeographyMappingRoute
+  '/_authenticated/outlet-module/customer': typeof AuthenticatedOutletModuleCustomerRoute
+  '/_authenticated/reports/achievement-category-wise': typeof AuthenticatedReportsAchievementCategoryWiseRoute
+  '/_authenticated/reports/area-wise-sales-report': typeof AuthenticatedReportsAreaWiseSalesReportRoute
+  '/_authenticated/reports/item-summary-report': typeof AuthenticatedReportsItemSummaryReportRoute
+  '/_authenticated/reports/territory-wise-items-report': typeof AuthenticatedReportsTerritoryWiseItemsReportRoute
+  '/_authenticated/reports/territory-wise-sales-report': typeof AuthenticatedReportsTerritoryWiseSalesReportRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -250,11 +668,35 @@ export interface FileRoutesById {
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
+  '/_authenticated/admin-module/operation/manual-bill-quota': typeof AuthenticatedAdminModuleOperationManualBillQuotaRoute
+  '/_authenticated/admin-module/operation/reverse-requests': typeof AuthenticatedAdminModuleOperationReverseRequestsRoute
+  '/_authenticated/admin-module/user-module/add-modifiy-user': typeof AuthenticatedAdminModuleUserModuleAddModifiyUserRoute
+  '/_authenticated/agency-module/dashboard/monthly-target': typeof AuthenticatedAgencyModuleDashboardMonthlyTargetRoute
+  '/_authenticated/agency-module/invoice/actual-invoice': typeof AuthenticatedAgencyModuleInvoiceActualInvoiceRoute
+  '/_authenticated/agency-module/invoice/manual-invoice': typeof AuthenticatedAgencyModuleInvoiceManualInvoiceRoute
+  '/_authenticated/agency-module/invoice/post-invoice': typeof AuthenticatedAgencyModuleInvoicePostInvoiceRoute
+  '/_authenticated/agency-module/invoice/view-invoice': typeof AuthenticatedAgencyModuleInvoiceViewInvoiceRoute
+  '/_authenticated/agency-module/loading-list/view-loading-list': typeof AuthenticatedAgencyModuleLoadingListViewLoadingListRoute
+  '/_authenticated/agency-module/market-return/return': typeof AuthenticatedAgencyModuleMarketReturnReturnRoute
+  '/_authenticated/agency-module/stock/add-stock': typeof AuthenticatedAgencyModuleStockAddStockRoute
+  '/_authenticated/agency-module/stock/request-order': typeof AuthenticatedAgencyModuleStockRequestOrderRoute
+  '/_authenticated/agency-module/stock/view-stock': typeof AuthenticatedAgencyModuleStockViewStockRoute
+  '/_authenticated/sales/sales-details/market-return': typeof AuthenticatedSalesSalesDetailsMarketReturnRoute
+  '/_authenticated/sales/sales-details/stock': typeof AuthenticatedSalesSalesDetailsStockRoute
+  '/_authenticated/sales/sales-details/view-invoices': typeof AuthenticatedSalesSalesDetailsViewInvoicesRoute
+  '/_authenticated/sales/sales-details/view-item-range-wise': typeof AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute
+  '/_authenticated/sales/sales-operations/category-add': typeof AuthenticatedSalesSalesOperationsCategoryAddRoute
+  '/_authenticated/sales/sales-operations/free-issue': typeof AuthenticatedSalesSalesOperationsFreeIssueRoute
+  '/_authenticated/sales/sales-operations/item-add': typeof AuthenticatedSalesSalesOperationsItemAddRoute
+  '/_authenticated/sales/sales-operations/item-master': typeof AuthenticatedSalesSalesOperationsItemMasterRoute
+  '/_authenticated/sales/sales-operations/target': typeof AuthenticatedSalesSalesOperationsTargetRoute
+  '/_authenticated/sales/sales-operations/working-day': typeof AuthenticatedSalesSalesOperationsWorkingDayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/clerk'
+    | '/outlet-module'
     | '/settings'
     | '/sign-in'
     | '/401'
@@ -262,8 +704,28 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/$rest'
+    | '/errors/forbidden'
+    | '/errors/internal-server-error'
+    | '/errors/maintenance-error'
+    | '/errors/not-found'
+    | '/errors/unauthorized'
     | '/'
+    | '/dashboard/$rest'
+    | '/dashboard/heart-count'
+    | '/dashboard/home-report'
     | '/errors/$error'
+    | '/hr-module/gps-monitoring'
+    | '/hr-module/time-attendance'
+    | '/master-settings/demarcation'
+    | '/master-settings/distributor-mapping'
+    | '/master-settings/final-geography-mapping'
+    | '/outlet-module/customer'
+    | '/reports/achievement-category-wise'
+    | '/reports/area-wise-sales-report'
+    | '/reports/item-summary-report'
+    | '/reports/territory-wise-items-report'
+    | '/reports/territory-wise-sales-report'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -277,17 +739,61 @@ export interface FileRouteTypes {
     | '/settings/'
     | '/tasks'
     | '/users'
+    | '/admin-module/operation/manual-bill-quota'
+    | '/admin-module/operation/reverse-requests'
+    | '/admin-module/user-module/add-modifiy-user'
+    | '/agency-module/dashboard/monthly-target'
+    | '/agency-module/invoice/actual-invoice'
+    | '/agency-module/invoice/manual-invoice'
+    | '/agency-module/invoice/post-invoice'
+    | '/agency-module/invoice/view-invoice'
+    | '/agency-module/loading-list/view-loading-list'
+    | '/agency-module/market-return/return'
+    | '/agency-module/stock/add-stock'
+    | '/agency-module/stock/request-order'
+    | '/agency-module/stock/view-stock'
+    | '/sales/sales-details/market-return'
+    | '/sales/sales-details/stock'
+    | '/sales/sales-details/view-invoices'
+    | '/sales/sales-details/view-item-range-wise'
+    | '/sales/sales-operations/category-add'
+    | '/sales/sales-operations/free-issue'
+    | '/sales/sales-operations/item-add'
+    | '/sales/sales-operations/item-master'
+    | '/sales/sales-operations/target'
+    | '/sales/sales-operations/working-day'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/clerk'
+    | '/outlet-module'
     | '/sign-in'
     | '/401'
     | '/403'
     | '/404'
     | '/500'
     | '/503'
+    | '/$rest'
+    | '/errors/forbidden'
+    | '/errors/internal-server-error'
+    | '/errors/maintenance-error'
+    | '/errors/not-found'
+    | '/errors/unauthorized'
     | '/'
+    | '/dashboard/$rest'
+    | '/dashboard/heart-count'
+    | '/dashboard/home-report'
     | '/errors/$error'
+    | '/hr-module/gps-monitoring'
+    | '/hr-module/time-attendance'
+    | '/master-settings/demarcation'
+    | '/master-settings/distributor-mapping'
+    | '/master-settings/final-geography-mapping'
+    | '/outlet-module/customer'
+    | '/reports/achievement-category-wise'
+    | '/reports/area-wise-sales-report'
+    | '/reports/item-summary-report'
+    | '/reports/territory-wise-items-report'
+    | '/reports/territory-wise-sales-report'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -301,10 +807,35 @@ export interface FileRouteTypes {
     | '/settings'
     | '/tasks'
     | '/users'
+    | '/admin-module/operation/manual-bill-quota'
+    | '/admin-module/operation/reverse-requests'
+    | '/admin-module/user-module/add-modifiy-user'
+    | '/agency-module/dashboard/monthly-target'
+    | '/agency-module/invoice/actual-invoice'
+    | '/agency-module/invoice/manual-invoice'
+    | '/agency-module/invoice/post-invoice'
+    | '/agency-module/invoice/view-invoice'
+    | '/agency-module/loading-list/view-loading-list'
+    | '/agency-module/market-return/return'
+    | '/agency-module/stock/add-stock'
+    | '/agency-module/stock/request-order'
+    | '/agency-module/stock/view-stock'
+    | '/sales/sales-details/market-return'
+    | '/sales/sales-details/stock'
+    | '/sales/sales-details/view-invoices'
+    | '/sales/sales-details/view-item-range-wise'
+    | '/sales/sales-operations/category-add'
+    | '/sales/sales-operations/free-issue'
+    | '/sales/sales-operations/item-add'
+    | '/sales/sales-operations/item-master'
+    | '/sales/sales-operations/target'
+    | '/sales/sales-operations/working-day'
   id:
     | '__root__'
+    | '/(auth)'
     | '/_authenticated'
     | '/clerk'
+    | '/_authenticated/outlet-module'
     | '/_authenticated/settings'
     | '/clerk/(auth)'
     | '/clerk/_authenticated'
@@ -314,8 +845,28 @@ export interface FileRouteTypes {
     | '/(errors)/404'
     | '/(errors)/500'
     | '/(errors)/503'
+    | '/_authenticated/$rest'
+    | '/errors/forbidden'
+    | '/errors/internal-server-error'
+    | '/errors/maintenance-error'
+    | '/errors/not-found'
+    | '/errors/unauthorized'
     | '/_authenticated/'
+    | '/_authenticated/dashboard/$rest'
+    | '/_authenticated/dashboard/heart-count'
+    | '/_authenticated/dashboard/home-report'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/hr-module/gps-monitoring'
+    | '/_authenticated/hr-module/time-attendance'
+    | '/_authenticated/master-settings/demarcation'
+    | '/_authenticated/master-settings/distributor-mapping'
+    | '/_authenticated/master-settings/final-geography-mapping'
+    | '/_authenticated/outlet-module/customer'
+    | '/_authenticated/reports/achievement-category-wise'
+    | '/_authenticated/reports/area-wise-sales-report'
+    | '/_authenticated/reports/item-summary-report'
+    | '/_authenticated/reports/territory-wise-items-report'
+    | '/_authenticated/reports/territory-wise-sales-report'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
@@ -329,17 +880,45 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/'
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
+    | '/_authenticated/admin-module/operation/manual-bill-quota'
+    | '/_authenticated/admin-module/operation/reverse-requests'
+    | '/_authenticated/admin-module/user-module/add-modifiy-user'
+    | '/_authenticated/agency-module/dashboard/monthly-target'
+    | '/_authenticated/agency-module/invoice/actual-invoice'
+    | '/_authenticated/agency-module/invoice/manual-invoice'
+    | '/_authenticated/agency-module/invoice/post-invoice'
+    | '/_authenticated/agency-module/invoice/view-invoice'
+    | '/_authenticated/agency-module/loading-list/view-loading-list'
+    | '/_authenticated/agency-module/market-return/return'
+    | '/_authenticated/agency-module/stock/add-stock'
+    | '/_authenticated/agency-module/stock/request-order'
+    | '/_authenticated/agency-module/stock/view-stock'
+    | '/_authenticated/sales/sales-details/market-return'
+    | '/_authenticated/sales/sales-details/stock'
+    | '/_authenticated/sales/sales-details/view-invoices'
+    | '/_authenticated/sales/sales-details/view-item-range-wise'
+    | '/_authenticated/sales/sales-operations/category-add'
+    | '/_authenticated/sales/sales-operations/free-issue'
+    | '/_authenticated/sales/sales-operations/item-add'
+    | '/_authenticated/sales/sales-operations/item-master'
+    | '/_authenticated/sales/sales-operations/target'
+    | '/_authenticated/sales/sales-operations/working-day'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  authRouteRoute: typeof authRouteRouteWithChildren
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   ClerkRouteRoute: typeof ClerkRouteRouteWithChildren
-  authSignInRoute: typeof authSignInRoute
   errors401Route: typeof errors401Route
   errors403Route: typeof errors403Route
   errors404Route: typeof errors404Route
   errors500Route: typeof errors500Route
   errors503Route: typeof errors503Route
+  ErrorsForbiddenRoute: typeof ErrorsForbiddenRoute
+  ErrorsInternalServerErrorRoute: typeof ErrorsInternalServerErrorRoute
+  ErrorsMaintenanceErrorRoute: typeof ErrorsMaintenanceErrorRoute
+  ErrorsNotFoundRoute: typeof ErrorsNotFoundRoute
+  ErrorsUnauthorizedRoute: typeof ErrorsUnauthorizedRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -358,11 +937,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(auth)': {
+      id: '/(auth)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof authRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/': {
       id: '/_authenticated/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/errors/unauthorized': {
+      id: '/errors/unauthorized'
+      path: '/errors/unauthorized'
+      fullPath: '/errors/unauthorized'
+      preLoaderRoute: typeof ErrorsUnauthorizedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/errors/not-found': {
+      id: '/errors/not-found'
+      path: '/errors/not-found'
+      fullPath: '/errors/not-found'
+      preLoaderRoute: typeof ErrorsNotFoundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/errors/maintenance-error': {
+      id: '/errors/maintenance-error'
+      path: '/errors/maintenance-error'
+      fullPath: '/errors/maintenance-error'
+      preLoaderRoute: typeof ErrorsMaintenanceErrorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/errors/internal-server-error': {
+      id: '/errors/internal-server-error'
+      path: '/errors/internal-server-error'
+      fullPath: '/errors/internal-server-error'
+      preLoaderRoute: typeof ErrorsInternalServerErrorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/errors/forbidden': {
+      id: '/errors/forbidden'
+      path: '/errors/forbidden'
+      fullPath: '/errors/forbidden'
+      preLoaderRoute: typeof ErrorsForbiddenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/$rest': {
+      id: '/_authenticated/$rest'
+      path: '/$rest'
+      fullPath: '/$rest'
+      preLoaderRoute: typeof AuthenticatedRestRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/(errors)/503': {
@@ -405,7 +1033,7 @@ declare module '@tanstack/react-router' {
       path: '/sign-in'
       fullPath: '/sign-in'
       preLoaderRoute: typeof authSignInRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof authRouteRoute
     }
     '/clerk/_authenticated': {
       id: '/clerk/_authenticated'
@@ -426,6 +1054,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/outlet-module': {
+      id: '/_authenticated/outlet-module'
+      path: '/outlet-module'
+      fullPath: '/outlet-module'
+      preLoaderRoute: typeof AuthenticatedOutletModuleRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/users/': {
@@ -519,6 +1154,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsAccountRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/reports/territory-wise-sales-report': {
+      id: '/_authenticated/reports/territory-wise-sales-report'
+      path: '/reports/territory-wise-sales-report'
+      fullPath: '/reports/territory-wise-sales-report'
+      preLoaderRoute: typeof AuthenticatedReportsTerritoryWiseSalesReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/territory-wise-items-report': {
+      id: '/_authenticated/reports/territory-wise-items-report'
+      path: '/reports/territory-wise-items-report'
+      fullPath: '/reports/territory-wise-items-report'
+      preLoaderRoute: typeof AuthenticatedReportsTerritoryWiseItemsReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/item-summary-report': {
+      id: '/_authenticated/reports/item-summary-report'
+      path: '/reports/item-summary-report'
+      fullPath: '/reports/item-summary-report'
+      preLoaderRoute: typeof AuthenticatedReportsItemSummaryReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/area-wise-sales-report': {
+      id: '/_authenticated/reports/area-wise-sales-report'
+      path: '/reports/area-wise-sales-report'
+      fullPath: '/reports/area-wise-sales-report'
+      preLoaderRoute: typeof AuthenticatedReportsAreaWiseSalesReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/achievement-category-wise': {
+      id: '/_authenticated/reports/achievement-category-wise'
+      path: '/reports/achievement-category-wise'
+      fullPath: '/reports/achievement-category-wise'
+      preLoaderRoute: typeof AuthenticatedReportsAchievementCategoryWiseRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/outlet-module/customer': {
+      id: '/_authenticated/outlet-module/customer'
+      path: '/customer'
+      fullPath: '/outlet-module/customer'
+      preLoaderRoute: typeof AuthenticatedOutletModuleCustomerRouteImport
+      parentRoute: typeof AuthenticatedOutletModuleRouteRoute
+    }
+    '/_authenticated/master-settings/final-geography-mapping': {
+      id: '/_authenticated/master-settings/final-geography-mapping'
+      path: '/master-settings/final-geography-mapping'
+      fullPath: '/master-settings/final-geography-mapping'
+      preLoaderRoute: typeof AuthenticatedMasterSettingsFinalGeographyMappingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/master-settings/distributor-mapping': {
+      id: '/_authenticated/master-settings/distributor-mapping'
+      path: '/master-settings/distributor-mapping'
+      fullPath: '/master-settings/distributor-mapping'
+      preLoaderRoute: typeof AuthenticatedMasterSettingsDistributorMappingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/master-settings/demarcation': {
+      id: '/_authenticated/master-settings/demarcation'
+      path: '/master-settings/demarcation'
+      fullPath: '/master-settings/demarcation'
+      preLoaderRoute: typeof AuthenticatedMasterSettingsDemarcationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/hr-module/time-attendance': {
+      id: '/_authenticated/hr-module/time-attendance'
+      path: '/hr-module/time-attendance'
+      fullPath: '/hr-module/time-attendance'
+      preLoaderRoute: typeof AuthenticatedHrModuleTimeAttendanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/hr-module/gps-monitoring': {
+      id: '/_authenticated/hr-module/gps-monitoring'
+      path: '/hr-module/gps-monitoring'
+      fullPath: '/hr-module/gps-monitoring'
+      preLoaderRoute: typeof AuthenticatedHrModuleGpsMonitoringRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -526,8 +1238,217 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dashboard/home-report': {
+      id: '/_authenticated/dashboard/home-report'
+      path: '/dashboard/home-report'
+      fullPath: '/dashboard/home-report'
+      preLoaderRoute: typeof AuthenticatedDashboardHomeReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/heart-count': {
+      id: '/_authenticated/dashboard/heart-count'
+      path: '/dashboard/heart-count'
+      fullPath: '/dashboard/heart-count'
+      preLoaderRoute: typeof AuthenticatedDashboardHeartCountRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/$rest': {
+      id: '/_authenticated/dashboard/$rest'
+      path: '/dashboard/$rest'
+      fullPath: '/dashboard/$rest'
+      preLoaderRoute: typeof AuthenticatedDashboardRestRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-operations/working-day': {
+      id: '/_authenticated/sales/sales-operations/working-day'
+      path: '/sales/sales-operations/working-day'
+      fullPath: '/sales/sales-operations/working-day'
+      preLoaderRoute: typeof AuthenticatedSalesSalesOperationsWorkingDayRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-operations/target': {
+      id: '/_authenticated/sales/sales-operations/target'
+      path: '/sales/sales-operations/target'
+      fullPath: '/sales/sales-operations/target'
+      preLoaderRoute: typeof AuthenticatedSalesSalesOperationsTargetRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-operations/item-master': {
+      id: '/_authenticated/sales/sales-operations/item-master'
+      path: '/sales/sales-operations/item-master'
+      fullPath: '/sales/sales-operations/item-master'
+      preLoaderRoute: typeof AuthenticatedSalesSalesOperationsItemMasterRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-operations/item-add': {
+      id: '/_authenticated/sales/sales-operations/item-add'
+      path: '/sales/sales-operations/item-add'
+      fullPath: '/sales/sales-operations/item-add'
+      preLoaderRoute: typeof AuthenticatedSalesSalesOperationsItemAddRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-operations/free-issue': {
+      id: '/_authenticated/sales/sales-operations/free-issue'
+      path: '/sales/sales-operations/free-issue'
+      fullPath: '/sales/sales-operations/free-issue'
+      preLoaderRoute: typeof AuthenticatedSalesSalesOperationsFreeIssueRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-operations/category-add': {
+      id: '/_authenticated/sales/sales-operations/category-add'
+      path: '/sales/sales-operations/category-add'
+      fullPath: '/sales/sales-operations/category-add'
+      preLoaderRoute: typeof AuthenticatedSalesSalesOperationsCategoryAddRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-details/view-item-range-wise': {
+      id: '/_authenticated/sales/sales-details/view-item-range-wise'
+      path: '/sales/sales-details/view-item-range-wise'
+      fullPath: '/sales/sales-details/view-item-range-wise'
+      preLoaderRoute: typeof AuthenticatedSalesSalesDetailsViewItemRangeWiseRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-details/view-invoices': {
+      id: '/_authenticated/sales/sales-details/view-invoices'
+      path: '/sales/sales-details/view-invoices'
+      fullPath: '/sales/sales-details/view-invoices'
+      preLoaderRoute: typeof AuthenticatedSalesSalesDetailsViewInvoicesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-details/stock': {
+      id: '/_authenticated/sales/sales-details/stock'
+      path: '/sales/sales-details/stock'
+      fullPath: '/sales/sales-details/stock'
+      preLoaderRoute: typeof AuthenticatedSalesSalesDetailsStockRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales/sales-details/market-return': {
+      id: '/_authenticated/sales/sales-details/market-return'
+      path: '/sales/sales-details/market-return'
+      fullPath: '/sales/sales-details/market-return'
+      preLoaderRoute: typeof AuthenticatedSalesSalesDetailsMarketReturnRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/stock/view-stock': {
+      id: '/_authenticated/agency-module/stock/view-stock'
+      path: '/agency-module/stock/view-stock'
+      fullPath: '/agency-module/stock/view-stock'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleStockViewStockRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/stock/request-order': {
+      id: '/_authenticated/agency-module/stock/request-order'
+      path: '/agency-module/stock/request-order'
+      fullPath: '/agency-module/stock/request-order'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleStockRequestOrderRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/stock/add-stock': {
+      id: '/_authenticated/agency-module/stock/add-stock'
+      path: '/agency-module/stock/add-stock'
+      fullPath: '/agency-module/stock/add-stock'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleStockAddStockRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/market-return/return': {
+      id: '/_authenticated/agency-module/market-return/return'
+      path: '/agency-module/market-return/return'
+      fullPath: '/agency-module/market-return/return'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleMarketReturnReturnRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/loading-list/view-loading-list': {
+      id: '/_authenticated/agency-module/loading-list/view-loading-list'
+      path: '/agency-module/loading-list/view-loading-list'
+      fullPath: '/agency-module/loading-list/view-loading-list'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleLoadingListViewLoadingListRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/invoice/view-invoice': {
+      id: '/_authenticated/agency-module/invoice/view-invoice'
+      path: '/agency-module/invoice/view-invoice'
+      fullPath: '/agency-module/invoice/view-invoice'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleInvoiceViewInvoiceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/invoice/post-invoice': {
+      id: '/_authenticated/agency-module/invoice/post-invoice'
+      path: '/agency-module/invoice/post-invoice'
+      fullPath: '/agency-module/invoice/post-invoice'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleInvoicePostInvoiceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/invoice/manual-invoice': {
+      id: '/_authenticated/agency-module/invoice/manual-invoice'
+      path: '/agency-module/invoice/manual-invoice'
+      fullPath: '/agency-module/invoice/manual-invoice'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleInvoiceManualInvoiceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/invoice/actual-invoice': {
+      id: '/_authenticated/agency-module/invoice/actual-invoice'
+      path: '/agency-module/invoice/actual-invoice'
+      fullPath: '/agency-module/invoice/actual-invoice'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleInvoiceActualInvoiceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/agency-module/dashboard/monthly-target': {
+      id: '/_authenticated/agency-module/dashboard/monthly-target'
+      path: '/agency-module/dashboard/monthly-target'
+      fullPath: '/agency-module/dashboard/monthly-target'
+      preLoaderRoute: typeof AuthenticatedAgencyModuleDashboardMonthlyTargetRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin-module/user-module/add-modifiy-user': {
+      id: '/_authenticated/admin-module/user-module/add-modifiy-user'
+      path: '/admin-module/user-module/add-modifiy-user'
+      fullPath: '/admin-module/user-module/add-modifiy-user'
+      preLoaderRoute: typeof AuthenticatedAdminModuleUserModuleAddModifiyUserRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin-module/operation/reverse-requests': {
+      id: '/_authenticated/admin-module/operation/reverse-requests'
+      path: '/admin-module/operation/reverse-requests'
+      fullPath: '/admin-module/operation/reverse-requests'
+      preLoaderRoute: typeof AuthenticatedAdminModuleOperationReverseRequestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin-module/operation/manual-bill-quota': {
+      id: '/_authenticated/admin-module/operation/manual-bill-quota'
+      path: '/admin-module/operation/manual-bill-quota'
+      fullPath: '/admin-module/operation/manual-bill-quota'
+      preLoaderRoute: typeof AuthenticatedAdminModuleOperationManualBillQuotaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
+
+interface authRouteRouteChildren {
+  authSignInRoute: typeof authSignInRoute
+}
+
+const authRouteRouteChildren: authRouteRouteChildren = {
+  authSignInRoute: authSignInRoute,
+}
+
+const authRouteRouteWithChildren = authRouteRoute._addFileChildren(
+  authRouteRouteChildren,
+)
+
+interface AuthenticatedOutletModuleRouteRouteChildren {
+  AuthenticatedOutletModuleCustomerRoute: typeof AuthenticatedOutletModuleCustomerRoute
+}
+
+const AuthenticatedOutletModuleRouteRouteChildren: AuthenticatedOutletModuleRouteRouteChildren =
+  {
+    AuthenticatedOutletModuleCustomerRoute:
+      AuthenticatedOutletModuleCustomerRoute,
+  }
+
+const AuthenticatedOutletModuleRouteRouteWithChildren =
+  AuthenticatedOutletModuleRouteRoute._addFileChildren(
+    AuthenticatedOutletModuleRouteRouteChildren,
+  )
 
 interface AuthenticatedSettingsRouteRouteChildren {
   AuthenticatedSettingsAccountRoute: typeof AuthenticatedSettingsAccountRoute
@@ -553,25 +1474,135 @@ const AuthenticatedSettingsRouteRouteWithChildren =
   )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedOutletModuleRouteRoute: typeof AuthenticatedOutletModuleRouteRouteWithChildren
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
+  AuthenticatedRestRoute: typeof AuthenticatedRestRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedDashboardRestRoute: typeof AuthenticatedDashboardRestRoute
+  AuthenticatedDashboardHeartCountRoute: typeof AuthenticatedDashboardHeartCountRoute
+  AuthenticatedDashboardHomeReportRoute: typeof AuthenticatedDashboardHomeReportRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedHrModuleGpsMonitoringRoute: typeof AuthenticatedHrModuleGpsMonitoringRoute
+  AuthenticatedHrModuleTimeAttendanceRoute: typeof AuthenticatedHrModuleTimeAttendanceRoute
+  AuthenticatedMasterSettingsDemarcationRoute: typeof AuthenticatedMasterSettingsDemarcationRoute
+  AuthenticatedMasterSettingsDistributorMappingRoute: typeof AuthenticatedMasterSettingsDistributorMappingRoute
+  AuthenticatedMasterSettingsFinalGeographyMappingRoute: typeof AuthenticatedMasterSettingsFinalGeographyMappingRoute
+  AuthenticatedReportsAchievementCategoryWiseRoute: typeof AuthenticatedReportsAchievementCategoryWiseRoute
+  AuthenticatedReportsAreaWiseSalesReportRoute: typeof AuthenticatedReportsAreaWiseSalesReportRoute
+  AuthenticatedReportsItemSummaryReportRoute: typeof AuthenticatedReportsItemSummaryReportRoute
+  AuthenticatedReportsTerritoryWiseItemsReportRoute: typeof AuthenticatedReportsTerritoryWiseItemsReportRoute
+  AuthenticatedReportsTerritoryWiseSalesReportRoute: typeof AuthenticatedReportsTerritoryWiseSalesReportRoute
   AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
+  AuthenticatedAdminModuleOperationManualBillQuotaRoute: typeof AuthenticatedAdminModuleOperationManualBillQuotaRoute
+  AuthenticatedAdminModuleOperationReverseRequestsRoute: typeof AuthenticatedAdminModuleOperationReverseRequestsRoute
+  AuthenticatedAdminModuleUserModuleAddModifiyUserRoute: typeof AuthenticatedAdminModuleUserModuleAddModifiyUserRoute
+  AuthenticatedAgencyModuleDashboardMonthlyTargetRoute: typeof AuthenticatedAgencyModuleDashboardMonthlyTargetRoute
+  AuthenticatedAgencyModuleInvoiceActualInvoiceRoute: typeof AuthenticatedAgencyModuleInvoiceActualInvoiceRoute
+  AuthenticatedAgencyModuleInvoiceManualInvoiceRoute: typeof AuthenticatedAgencyModuleInvoiceManualInvoiceRoute
+  AuthenticatedAgencyModuleInvoicePostInvoiceRoute: typeof AuthenticatedAgencyModuleInvoicePostInvoiceRoute
+  AuthenticatedAgencyModuleInvoiceViewInvoiceRoute: typeof AuthenticatedAgencyModuleInvoiceViewInvoiceRoute
+  AuthenticatedAgencyModuleLoadingListViewLoadingListRoute: typeof AuthenticatedAgencyModuleLoadingListViewLoadingListRoute
+  AuthenticatedAgencyModuleMarketReturnReturnRoute: typeof AuthenticatedAgencyModuleMarketReturnReturnRoute
+  AuthenticatedAgencyModuleStockAddStockRoute: typeof AuthenticatedAgencyModuleStockAddStockRoute
+  AuthenticatedAgencyModuleStockRequestOrderRoute: typeof AuthenticatedAgencyModuleStockRequestOrderRoute
+  AuthenticatedAgencyModuleStockViewStockRoute: typeof AuthenticatedAgencyModuleStockViewStockRoute
+  AuthenticatedSalesSalesDetailsMarketReturnRoute: typeof AuthenticatedSalesSalesDetailsMarketReturnRoute
+  AuthenticatedSalesSalesDetailsStockRoute: typeof AuthenticatedSalesSalesDetailsStockRoute
+  AuthenticatedSalesSalesDetailsViewInvoicesRoute: typeof AuthenticatedSalesSalesDetailsViewInvoicesRoute
+  AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute: typeof AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute
+  AuthenticatedSalesSalesOperationsCategoryAddRoute: typeof AuthenticatedSalesSalesOperationsCategoryAddRoute
+  AuthenticatedSalesSalesOperationsFreeIssueRoute: typeof AuthenticatedSalesSalesOperationsFreeIssueRoute
+  AuthenticatedSalesSalesOperationsItemAddRoute: typeof AuthenticatedSalesSalesOperationsItemAddRoute
+  AuthenticatedSalesSalesOperationsItemMasterRoute: typeof AuthenticatedSalesSalesOperationsItemMasterRoute
+  AuthenticatedSalesSalesOperationsTargetRoute: typeof AuthenticatedSalesSalesOperationsTargetRoute
+  AuthenticatedSalesSalesOperationsWorkingDayRoute: typeof AuthenticatedSalesSalesOperationsWorkingDayRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedOutletModuleRouteRoute:
+    AuthenticatedOutletModuleRouteRouteWithChildren,
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
+  AuthenticatedRestRoute: AuthenticatedRestRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedDashboardRestRoute: AuthenticatedDashboardRestRoute,
+  AuthenticatedDashboardHeartCountRoute: AuthenticatedDashboardHeartCountRoute,
+  AuthenticatedDashboardHomeReportRoute: AuthenticatedDashboardHomeReportRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedHrModuleGpsMonitoringRoute:
+    AuthenticatedHrModuleGpsMonitoringRoute,
+  AuthenticatedHrModuleTimeAttendanceRoute:
+    AuthenticatedHrModuleTimeAttendanceRoute,
+  AuthenticatedMasterSettingsDemarcationRoute:
+    AuthenticatedMasterSettingsDemarcationRoute,
+  AuthenticatedMasterSettingsDistributorMappingRoute:
+    AuthenticatedMasterSettingsDistributorMappingRoute,
+  AuthenticatedMasterSettingsFinalGeographyMappingRoute:
+    AuthenticatedMasterSettingsFinalGeographyMappingRoute,
+  AuthenticatedReportsAchievementCategoryWiseRoute:
+    AuthenticatedReportsAchievementCategoryWiseRoute,
+  AuthenticatedReportsAreaWiseSalesReportRoute:
+    AuthenticatedReportsAreaWiseSalesReportRoute,
+  AuthenticatedReportsItemSummaryReportRoute:
+    AuthenticatedReportsItemSummaryReportRoute,
+  AuthenticatedReportsTerritoryWiseItemsReportRoute:
+    AuthenticatedReportsTerritoryWiseItemsReportRoute,
+  AuthenticatedReportsTerritoryWiseSalesReportRoute:
+    AuthenticatedReportsTerritoryWiseSalesReportRoute,
   AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
+  AuthenticatedAdminModuleOperationManualBillQuotaRoute:
+    AuthenticatedAdminModuleOperationManualBillQuotaRoute,
+  AuthenticatedAdminModuleOperationReverseRequestsRoute:
+    AuthenticatedAdminModuleOperationReverseRequestsRoute,
+  AuthenticatedAdminModuleUserModuleAddModifiyUserRoute:
+    AuthenticatedAdminModuleUserModuleAddModifiyUserRoute,
+  AuthenticatedAgencyModuleDashboardMonthlyTargetRoute:
+    AuthenticatedAgencyModuleDashboardMonthlyTargetRoute,
+  AuthenticatedAgencyModuleInvoiceActualInvoiceRoute:
+    AuthenticatedAgencyModuleInvoiceActualInvoiceRoute,
+  AuthenticatedAgencyModuleInvoiceManualInvoiceRoute:
+    AuthenticatedAgencyModuleInvoiceManualInvoiceRoute,
+  AuthenticatedAgencyModuleInvoicePostInvoiceRoute:
+    AuthenticatedAgencyModuleInvoicePostInvoiceRoute,
+  AuthenticatedAgencyModuleInvoiceViewInvoiceRoute:
+    AuthenticatedAgencyModuleInvoiceViewInvoiceRoute,
+  AuthenticatedAgencyModuleLoadingListViewLoadingListRoute:
+    AuthenticatedAgencyModuleLoadingListViewLoadingListRoute,
+  AuthenticatedAgencyModuleMarketReturnReturnRoute:
+    AuthenticatedAgencyModuleMarketReturnReturnRoute,
+  AuthenticatedAgencyModuleStockAddStockRoute:
+    AuthenticatedAgencyModuleStockAddStockRoute,
+  AuthenticatedAgencyModuleStockRequestOrderRoute:
+    AuthenticatedAgencyModuleStockRequestOrderRoute,
+  AuthenticatedAgencyModuleStockViewStockRoute:
+    AuthenticatedAgencyModuleStockViewStockRoute,
+  AuthenticatedSalesSalesDetailsMarketReturnRoute:
+    AuthenticatedSalesSalesDetailsMarketReturnRoute,
+  AuthenticatedSalesSalesDetailsStockRoute:
+    AuthenticatedSalesSalesDetailsStockRoute,
+  AuthenticatedSalesSalesDetailsViewInvoicesRoute:
+    AuthenticatedSalesSalesDetailsViewInvoicesRoute,
+  AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute:
+    AuthenticatedSalesSalesDetailsViewItemRangeWiseRoute,
+  AuthenticatedSalesSalesOperationsCategoryAddRoute:
+    AuthenticatedSalesSalesOperationsCategoryAddRoute,
+  AuthenticatedSalesSalesOperationsFreeIssueRoute:
+    AuthenticatedSalesSalesOperationsFreeIssueRoute,
+  AuthenticatedSalesSalesOperationsItemAddRoute:
+    AuthenticatedSalesSalesOperationsItemAddRoute,
+  AuthenticatedSalesSalesOperationsItemMasterRoute:
+    AuthenticatedSalesSalesOperationsItemMasterRoute,
+  AuthenticatedSalesSalesOperationsTargetRoute:
+    AuthenticatedSalesSalesOperationsTargetRoute,
+  AuthenticatedSalesSalesOperationsWorkingDayRoute:
+    AuthenticatedSalesSalesOperationsWorkingDayRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -621,14 +1652,19 @@ const ClerkRouteRouteWithChildren = ClerkRouteRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  authRouteRoute: authRouteRouteWithChildren,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   ClerkRouteRoute: ClerkRouteRouteWithChildren,
-  authSignInRoute: authSignInRoute,
   errors401Route: errors401Route,
   errors403Route: errors403Route,
   errors404Route: errors404Route,
   errors500Route: errors500Route,
   errors503Route: errors503Route,
+  ErrorsForbiddenRoute: ErrorsForbiddenRoute,
+  ErrorsInternalServerErrorRoute: ErrorsInternalServerErrorRoute,
+  ErrorsMaintenanceErrorRoute: ErrorsMaintenanceErrorRoute,
+  ErrorsNotFoundRoute: ErrorsNotFoundRoute,
+  ErrorsUnauthorizedRoute: ErrorsUnauthorizedRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

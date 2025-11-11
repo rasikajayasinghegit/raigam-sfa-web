@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type ReactNode, useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from '@tanstack/react-router'
 import { ChevronRight } from 'lucide-react'
 import {
@@ -36,6 +36,19 @@ import {
 export function NavGroup({ title, items }: NavGroupProps) {
   const { state, isMobile } = useSidebar()
   const href = useLocation({ select: (location) => location.href })
+
+  // Single-open accordion behavior within a group
+  const initialOpenKey = useMemo(() => {
+    const activeParent = items.find((it) => !!it.items && checkIsActive(href, it, true))
+    return activeParent ? `${activeParent.title}-${activeParent.url}` : null
+  }, [href, items])
+  const [openKey, setOpenKey] = useState<string | null>(initialOpenKey)
+
+  useEffect(() => {
+    // Update openKey when navigation changes, so the active group opens
+    setOpenKey(initialOpenKey)
+  }, [initialOpenKey])
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{title}</SidebarGroupLabel>
@@ -51,7 +64,15 @@ export function NavGroup({ title, items }: NavGroupProps) {
               <SidebarMenuCollapsedDropdown key={key} item={item} href={href} />
             )
 
-          return <SidebarMenuCollapsible key={key} item={item} href={href} />
+          return (
+            <SidebarMenuCollapsible
+              key={key}
+              item={item}
+              href={href}
+              open={openKey === key}
+              onOpenChange={(open) => setOpenKey(open ? key : null)}
+            />
+          )
         })}
       </SidebarMenu>
     </SidebarGroup>
@@ -84,15 +105,20 @@ function SidebarMenuLink({ item, href }: { item: NavLink; href: string }) {
 function SidebarMenuCollapsible({
   item,
   href,
+  open,
+  onOpenChange,
 }: {
   item: NavCollapsible
   href: string
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }) {
   const { setOpenMobile } = useSidebar()
   return (
     <Collapsible
       asChild
-      defaultOpen={checkIsActive(href, item, true)}
+      open={open}
+      onOpenChange={onOpenChange}
       className='group/collapsible'
     >
       <SidebarMenuItem>

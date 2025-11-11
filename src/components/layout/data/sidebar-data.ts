@@ -1,28 +1,30 @@
 import {
-  Construction,
+  Warehouse,
+  House,
+  ReceiptText,
   LayoutDashboard,
-  Monitor,
-  Bug,
-  ListTodo,
-  FileX,
-  HelpCircle,
-  Lock,
-  Bell,
-  Package,
-  Palette,
-  ServerOff,
-  Settings,
-  Wrench,
-  UserCog,
-  UserX,
-  Users,
-  MessagesSquare,
-  ShieldCheck,
+  FileHeart,
+  MapPinHouse,
+  Anchor,
+  MapPinPlus,
+  Store,
+  BriefcaseBusiness,
+  Route as RouteIcon,
+  Trophy,
+  FileCheck2,
+  ChartArea,
+  ChartLine,
+  ChartNoAxesCombined,
+  LocateFixed,
+  CalendarClock,
+  User,
+  UserRoundCog,
+  ListRestart,
+  Undo2,
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
 } from 'lucide-react'
-import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -50,139 +52,133 @@ export const sidebarData: SidebarData = {
   ],
   navGroups: [
     {
-      title: 'General',
+      title: 'Dashboards',
+      items: [
+        { title: 'Home Report', url: '/dashboard/home-report', icon: House },
+        { title: 'Heart Count', url: '/dashboard/heart-count', icon: FileHeart },
+      ],
+    },
+    {
+      title: 'Master Settings',
+      items: [
+        { title: 'Demarcation', url: '/master-settings/demarcation', icon: MapPinHouse },
+        { title: 'Distributor Mapping', url: '/master-settings/distributor-mapping', icon: Anchor },
+        { title: 'Final Geography Mapping', url: '/master-settings/final-geography-mapping', icon: MapPinPlus },
+      ],
+    },
+    {
+      title: 'Sales',
+      items: [
+        {
+          title: 'Sales Details',
+          icon: ReceiptText,
+          items: [
+            { title: 'View Item Range Wise', url: '/sales/sales-details/view-item-range-wise' },
+            { title: 'Stock', url: '/sales/sales-details/stock' },
+            { title: 'View Invoices', url: '/sales/sales-details/view-invoices' },
+            { title: 'Market Return', url: '/sales/sales-details/market-return' },
+          ],
+        },
+        {
+          title: 'Sales Operations',
+          icon: BriefcaseBusiness,
+          items: [
+            { title: 'Category Add', url: '/sales/sales-operations/category-add' },
+            { title: 'Item Master', url: '/sales/sales-operations/item-master' },
+            { title: 'Item Add', url: '/sales/sales-operations/item-add' },
+            { title: 'Working Day', url: '/sales/sales-operations/working-day' },
+            { title: 'Target', url: '/sales/sales-operations/target' },
+            { title: 'Free Issue', url: '/sales/sales-operations/free-issue' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Outlet Module',
+      items: [
+        { title: 'Customer(Outlet)', url: '/outlet-module/customer', icon: Store },
+        { title: 'Route', url: '/outlet-module/route', icon: RouteIcon },
+      ],
+    },
+    {
+      title: 'Reports',
+      items: [
+        { title: 'Achievement Category Wise', url: '/reports/achievement-category-wise', icon: Trophy },
+        { title: 'Area Wise Sales Report', url: '/reports/area-wise-sales-report', icon: ChartArea },
+        { title: 'Item Summary Report', url: '/reports/item-summary-report', icon: FileCheck2 },
+        { title: 'Territory Wise Sales Report', url: '/reports/territory-wise-sales-report', icon: ChartLine },
+        { title: 'Territory Wise Items Report', url: '/reports/territory-wise-items-report', icon: ChartNoAxesCombined },
+      ],
+    },
+    {
+      title: 'HR Module',
+      items: [
+        { title: 'GPS Monitoring', url: '/hr-module/gps-monitoring', icon: LocateFixed },
+        { title: 'Time Attendance', url: '/hr-module/time-attendance', icon: CalendarClock },
+      ],
+    },
+    {
+      title: 'Admin Module',
+      items: [
+        {
+          title: 'User Module',
+          icon: User,
+          items: [
+            { title: 'Add/Modifiy User', url: '/admin-module/user-module/add-modifiy-user' },
+          ],
+        },
+        {
+          title: 'Operation',
+          icon: UserRoundCog,
+          items: [
+            { title: 'Reverse Requests', url: '/admin-module/operation/reverse-requests' },
+            { title: 'Manual Bill Quota', url: '/admin-module/operation/manual-bill-quota' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Agency Module',
       items: [
         {
           title: 'Dashboard',
-          url: '/',
           icon: LayoutDashboard,
-        },
-        {
-          title: 'Tasks',
-          url: '/tasks',
-          icon: ListTodo,
-        },
-        {
-          title: 'Apps',
-          url: '/apps',
-          icon: Package,
-        },
-        {
-          title: 'Chats',
-          url: '/chats',
-          badge: '3',
-          icon: MessagesSquare,
-        },
-        {
-          title: 'Users',
-          url: '/users',
-          icon: Users,
-        },
-        {
-          title: 'Secured by Clerk',
-          icon: ClerkLogo,
           items: [
-            {
-              title: 'Sign In',
-              url: '/clerk/sign-in',
-            },
-            {
-              title: 'Sign Up',
-              url: '/clerk/sign-up',
-            },
-            {
-              title: 'User Management',
-              url: '/clerk/user-management',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Pages',
-      items: [
-        {
-          title: 'Auth',
-          icon: ShieldCheck,
-          items: [
-            {
-              title: 'Sign In',
-              url: '/sign-in',
-            },
-            
+            { title: 'Monthly Target', url: '/agency-module/dashboard/monthly-target' },
           ],
         },
         {
-          title: 'Errors',
-          icon: Bug,
+          title: 'Invoice',
+          icon: ReceiptText,
           items: [
-            {
-              title: 'Unauthorized',
-              url: '/errors/unauthorized',
-              icon: Lock,
-            },
-            {
-              title: 'Forbidden',
-              url: '/errors/forbidden',
-              icon: UserX,
-            },
-            {
-              title: 'Not Found',
-              url: '/errors/not-found',
-              icon: FileX,
-            },
-            {
-              title: 'Internal Server Error',
-              url: '/errors/internal-server-error',
-              icon: ServerOff,
-            },
-            {
-              title: 'Maintenance Error',
-              url: '/errors/maintenance-error',
-              icon: Construction,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Other',
-      items: [
-        {
-          title: 'Settings',
-          icon: Settings,
-          items: [
-            {
-              title: 'Profile',
-              url: '/settings',
-              icon: UserCog,
-            },
-            {
-              title: 'Account',
-              url: '/settings/account',
-              icon: Wrench,
-            },
-            {
-              title: 'Appearance',
-              url: '/settings/appearance',
-              icon: Palette,
-            },
-            {
-              title: 'Notifications',
-              url: '/settings/notifications',
-              icon: Bell,
-            },
-            {
-              title: 'Display',
-              url: '/settings/display',
-              icon: Monitor,
-            },
+            { title: 'Actual Invoice', url: '/agency-module/invoice/actual-invoice' },
+            { title: 'Post Invoice', url: '/agency-module/invoice/post-invoice' },
+            { title: 'Manual Invoice', url: '/agency-module/invoice/manual-invoice' },
+            { title: 'View Invoice', url: '/agency-module/invoice/view-invoice' },
           ],
         },
         {
-          title: 'Help Center',
-          url: '/help-center',
-          icon: HelpCircle,
+          title: 'Loading List',
+          icon: ListRestart,
+          items: [
+            { title: 'View Loading List', url: '/agency-module/loading-list/view-loading-list' },
+          ],
+        },
+        {
+          title: 'Return',
+          icon: Undo2,
+          items: [
+            { title: 'Market Return', url: '/agency-module/market-return/return' },
+          ],
+        },
+        {
+          title: 'Stock',
+          icon: Warehouse,
+          items: [
+            { title: 'View Stock', url: '/agency-module/stock/view-stock' },
+            { title: 'Add Stock', url: '/agency-module/stock/add-stock' },
+            { title: 'Request Order', url: '/agency-module/stock/request-order' },
+          ],
         },
       ],
     },
