@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Link, useNavigate } from '@tanstack/react-router'
+import { useNavigate } from '@tanstack/react-router'
 import { loginThunk } from '@/store/authSlice'
-import { Loader2, LogIn } from 'lucide-react'
 import { useAppDispatch } from '@/store/hooks'
+import { Loader2, LogIn } from 'lucide-react'
 import { toast } from 'sonner'
-import { IconFacebook, IconGithub } from '@/assets/brand-icons'
+// import { IconFacebook, IconGithub } from '@/assets/brand-icons'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   Form,
   FormControl,
@@ -27,6 +28,7 @@ const formSchema = z.object({
     .string()
     .min(1, 'Please enter your password')
     .min(1, 'Password must be at least 1 characters long'),
+  remember: z.boolean().optional().default(false),
 })
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLFormElement> {
@@ -47,6 +49,7 @@ export function UserAuthForm({
     defaultValues: {
       username: '',
       password: '',
+      remember: false,
     },
   })
 
@@ -54,7 +57,11 @@ export function UserAuthForm({
     setIsLoading(true)
 
     const promise = dispatch(
-      loginThunk({ userName: data.username, password: data.password })
+      loginThunk({
+        userName: data.username,
+        password: data.password,
+        remember: data.remember,
+      })
     ).unwrap()
 
     toast.promise(promise, {
@@ -100,6 +107,21 @@ export function UserAuthForm({
                 <PasswordInput placeholder='********' {...field} />
               </FormControl>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='remember'
+          render={({ field }) => (
+            <FormItem className='mt-1 flex flex-row items-center space-x-2'>
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={(v) => field.onChange(!!v)}
+                />
+              </FormControl>
+              <FormLabel className='m-0'>Remember me</FormLabel>
             </FormItem>
           )}
         />

@@ -34,6 +34,14 @@ export function setCookie(
 }
 
 /**
+ * Set a session cookie (expires when the browser is closed)
+ */
+export function setSessionCookie(name: string, value: string): void {
+  if (typeof document === 'undefined') return
+  document.cookie = `${name}=${value}; path=/`
+}
+
+/**
  * Remove a cookie by setting its max age to 0
  */
 export function removeCookie(name: string): void {

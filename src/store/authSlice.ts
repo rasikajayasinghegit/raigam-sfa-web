@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { LoginRequest, LoginResponse } from '@/services/authApi'
+import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import type { LoginRequest } from '@/services/authApi'
 import * as authApi from '@/services/authApi'
 import {
   setAccessToken,
@@ -31,7 +31,9 @@ const AUTH_USER_KEY = 'auth_user'
 function setStoredUser(user: AuthUser) {
   try {
     localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user))
-  } catch {}
+  } catch {
+    /* noop */
+  }
 }
 
 function getStoredUser(): AuthUser | null {
@@ -46,10 +48,12 @@ function getStoredUser(): AuthUser | null {
 function clearStoredUser() {
   try {
     localStorage.removeItem(AUTH_USER_KEY)
-  } catch {}
+  } catch {
+    /* noop */
+  }
 }
 
-function decodeJwt(token: string): any | null {
+function decodeJwt(token: string): unknown | null {
   try {
     const [, payload] = token.split('.')
     const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'))
@@ -61,11 +65,12 @@ function decodeJwt(token: string): any | null {
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
-  async (payload: LoginRequest) => {
+  async (payload: LoginRequest & { remember?: boolean }) => {
     const res = await authApi.login(payload)
     const p = res.payload
     setAccessToken(p.token)
-    setRefreshToken(p.refreshToken, p.refreshTokenExpiry)
+    // If remember is true, persist refresh cookie with API expiry; otherwise use session cookie
+    setRefreshToken(p.refreshToken, p.refreshTokenExpiry, !payload.remember)
     const user: AuthUser = {
       userId: p.userId,
       userName: p.userName,
@@ -155,7 +160,7 @@ const authSlice = createSlice({
       .addCase(loginThunk.rejected, (state) => {
         state.status = 'idle'
       })
-      .addCase(hydrateFromRefreshThunk.fulfilled, (state) => {
+      .addCase(hydrateFromRefreshThunk.fulfilled, (_state) => {
         // keep status as-is; token refreshed silently
       })
       .addCase(hydrateOnLoadThunk.fulfilled, (state, action) => {

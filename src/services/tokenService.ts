@@ -1,4 +1,4 @@
-import { getCookie, setCookie, removeCookie } from '@/lib/cookies'
+import { getCookie, setCookie, setSessionCookie, removeCookie } from '@/lib/cookies'
 
 const REFRESH_COOKIE = 'refresh_token'
 
@@ -20,10 +20,15 @@ export function getRefreshToken(): string | undefined {
   return getCookie(REFRESH_COOKIE)
 }
 
-export function setRefreshToken(token: string, maxAgeMs: number) {
+export function setRefreshToken(token: string, maxAgeMs?: number, session: boolean = false) {
   // Best-effort cookie; server-set httpOnly cookie is preferable
-  const maxAge = Math.floor(maxAgeMs / 1000)
-  setCookie(REFRESH_COOKIE, token, maxAge)
+  if (session) {
+    setSessionCookie(REFRESH_COOKIE, token)
+    return
+  }
+  const maxAge = maxAgeMs ? Math.floor(maxAgeMs / 1000) : undefined
+  if (typeof maxAge === 'number') setCookie(REFRESH_COOKIE, token, maxAge)
+  else setCookie(REFRESH_COOKIE, token)
 }
 
 export function clearRefreshToken() {
@@ -34,4 +39,3 @@ export function clearAllTokens() {
   clearAccessToken()
   clearRefreshToken()
 }
-

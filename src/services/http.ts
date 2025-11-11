@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios, { type AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import {
   getAccessToken,
   getRefreshToken,
@@ -76,7 +76,7 @@ http.interceptors.response.use(
         if (!original.headers) original.headers = {}
         original.headers.Authorization = `Bearer ${newToken}`
         return http(original)
-      } catch (e) {
+      } catch (_e) {
         clearAllTokens()
         return Promise.reject(error)
       } finally {
@@ -87,4 +87,3 @@ http.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
