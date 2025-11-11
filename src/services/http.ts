@@ -1,4 +1,9 @@
-import axios, { type AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios'
+import axios, {
+  AxiosHeaders,
+  type AxiosError,
+  type AxiosInstance,
+  type AxiosRequestConfig,
+} from 'axios'
 import {
   getAccessToken,
   getRefreshToken,
@@ -41,10 +46,12 @@ export const http = axios.create({ baseURL })
 http.interceptors.request.use((config) => {
   const token = getAccessToken()
   if (token) {
-    config.headers = {
-      ...config.headers,
-      Authorization: `Bearer ${token}`,
-    }
+    const headers =
+      config.headers instanceof AxiosHeaders
+        ? config.headers
+        : new AxiosHeaders(config.headers as any)
+    headers.set('Authorization', `Bearer ${token}`)
+    config.headers = headers
   }
   return config
 })
@@ -60,8 +67,12 @@ http.interceptors.response.use(
       if (isRefreshing) {
         return new Promise((resolve) => {
           addPendingRequest((token: string) => {
-            if (!original.headers) original.headers = {}
-            original.headers.Authorization = `Bearer ${token}`
+            const headers =
+              original.headers instanceof AxiosHeaders
+                ? (original.headers as AxiosHeaders)
+                : new AxiosHeaders(original.headers as any)
+            headers.set('Authorization', `Bearer ${token}`)
+            original.headers = headers
             original._retry = true
             resolve(http(original))
           })
@@ -73,8 +84,12 @@ http.interceptors.response.use(
       try {
         const newToken = await refreshAccessToken(http)
         onRefreshed(newToken)
-        if (!original.headers) original.headers = {}
-        original.headers.Authorization = `Bearer ${newToken}`
+        const headers =
+          original.headers instanceof AxiosHeaders
+            ? (original.headers as AxiosHeaders)
+            : new AxiosHeaders(original.headers as any)
+        headers.set('Authorization', `Bearer ${newToken}`)
+        original.headers = headers
         return http(original)
       } catch (_e) {
         clearAllTokens()

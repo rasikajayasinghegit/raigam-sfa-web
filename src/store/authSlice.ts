@@ -116,8 +116,8 @@ export const hydrateOnLoadThunk = createAsyncThunk(
     // Note: This is best-effort and for UI only
     const token = getAccessToken()
     if (token) {
-      const info = decodeJwt(token)
-      const sub = info?.sub as string | undefined
+      const info = decodeJwt(token) as { sub?: string } | null
+      const sub = info?.sub
       if (sub) {
         const user: AuthUser = {
           userId: 0,

@@ -44,7 +44,8 @@ export function UserAuthForm({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  // Use input/output generics to align with zodResolver transformation
+  const form = useForm<z.input<typeof formSchema>, any, z.output<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: '',
@@ -53,7 +54,7 @@ export function UserAuthForm({
     },
   })
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
+  function onSubmit(data: z.output<typeof formSchema>) {
     setIsLoading(true)
 
     const promise = dispatch(
