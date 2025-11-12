@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Minimize2, Maximize2 } from 'lucide-react'
+import { FaExpand, FaCompress } from 'react-icons/fa'
 import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 export function FullscreenToggle() {
   const [isFullscreen, setIsFullscreen] = useState<boolean>(
@@ -39,11 +43,10 @@ export function FullscreenToggle() {
           aria-label={label}
           title={label}
         >
-          {isFullscreen ? <Minimize2 /> : <Maximize2 />}
+          {isFullscreen ? <FaCompress /> : <FaExpand />}
         </Button>
       </TooltipTrigger>
       <TooltipContent sideOffset={8}>{label}</TooltipContent>
     </Tooltip>
   )
 }
-

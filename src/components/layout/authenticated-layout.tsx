@@ -11,6 +11,7 @@ import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { SkipToMain } from '@/components/skip-to-main'
 import { ThemeSwitch } from '@/components/theme-switch'
+import { FullscreenToggle } from '@/components/fullscreen-toggle'
 
 // Authorization handled via route beforeLoad; no runtime redirects here
 
@@ -44,6 +45,7 @@ export function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
             <Header fixed className='border-b'>
               <Search />
               <div className='ms-auto flex items-center space-x-4'>
+                <FullscreenToggle />
                 <ThemeSwitch />
                 <ConfigDrawer />
                 <ProfileDropdown />
