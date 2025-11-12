@@ -11,6 +11,7 @@ import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { SkipToMain } from '@/components/skip-to-main'
 import { ThemeSwitch } from '@/components/theme-switch'
+
 // Authorization handled via route beforeLoad; no runtime redirects here
 
 type AuthenticatedLayoutProps = {
