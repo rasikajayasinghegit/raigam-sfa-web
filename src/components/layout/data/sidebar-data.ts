@@ -54,6 +54,7 @@ export const sidebarData: SidebarData = {
     {
       title: 'Dashboards',
       items: [
+        { title: 'Overview', url: '/dashboard/overview', icon: LayoutDashboard },
         { title: 'Home Report', url: '/dashboard/home-report', icon: House },
         { title: 'Heart Count', url: '/dashboard/heart-count', icon: FileHeart },
       ],

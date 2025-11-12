@@ -71,7 +71,7 @@ export function UserAuthForm({
 
     toast.promise(promise, {
       loading: 'Signing in...',
-      success: () => {
+      success: (_result) => {
         const targetPath = redirectTo || '/dashboard/home-report'
         navigate({ to: targetPath, replace: true })
         return `Welcome back, ${data.username}!`
@@ -87,6 +87,7 @@ export function UserAuthForm({
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn('grid gap-3', className)}
+        autoComplete='on'
         {...props}
       >
         <FormField
@@ -96,7 +97,13 @@ export function UserAuthForm({
             <FormItem>
               <FormLabel>User Name</FormLabel>
               <FormControl>
-                <Input placeholder='User name' {...field} />
+                <Input
+                  placeholder='User name'
+                  autoComplete='username'
+                  autoCapitalize='none'
+                  autoCorrect='off'
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -109,7 +116,11 @@ export function UserAuthForm({
             <FormItem className='relative'>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <PasswordInput placeholder='********' {...field} />
+                <PasswordInput
+                  placeholder='********'
+                  autoComplete='current-password'
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

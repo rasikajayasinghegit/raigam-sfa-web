@@ -7,18 +7,24 @@ import {
   clearAllTokens,
   getRefreshToken,
   getAccessToken,
+  setRememberPreference,
+  clearRememberPreference,
+  getRememberPreference,
 } from '@/services/tokenService'
+// Role-based mapping removed
 
 export type AuthUser = {
   userId: number
   userName: string
   personalName: string
+  roleId?: number
   role?: string
 }
 
 type AuthState = {
   user: AuthUser | null
   status: 'idle' | 'loading' | 'authenticated'
+  effectivePermissions?: string[]
 }
 
 const initialState: AuthState = {
@@ -69,14 +75,18 @@ export const loginThunk = createAsyncThunk(
     const res = await authApi.login(payload)
     const p = res.payload
     setAccessToken(p.token)
+    // Persist remember preference for future refreshes
+    setRememberPreference(!!payload.remember)
     // If remember is true, persist refresh cookie with API expiry; otherwise use session cookie
     setRefreshToken(p.refreshToken, p.refreshTokenExpiry, !payload.remember)
     const user: AuthUser = {
       userId: p.userId,
       userName: p.userName,
       personalName: p.personalName,
+      roleId: p.roleId,
       role: p.role,
     }
+    // Compute permissions via role policy (or switch to server-provided perms later)
     setStoredUser(user)
     return { user }
   }
@@ -91,7 +101,9 @@ export const hydrateFromRefreshThunk = createAsyncThunk(
     const p = res.payload
     setAccessToken(p.token)
     if (p.refreshToken && p.refreshTokenExpiry) {
-      setRefreshToken(p.refreshToken, p.refreshTokenExpiry)
+      // Respect stored remember preference when refreshing
+      const session = !getRememberPreference()
+      setRefreshToken(p.refreshToken, p.refreshTokenExpiry, session)
     }
     return true
   }
@@ -110,8 +122,10 @@ export const hydrateOnLoadThunk = createAsyncThunk(
 
     // Restore user from storage if available; else derive minimal from JWT
     const stored = getStoredUser()
-    if (stored) return { user: stored }
-
+    if (stored) {
+      return { user: stored }
+    }
+    
     // Fallback: try to derive username from JWT 'sub'
     // Note: This is best-effort and for UI only
     const token = getAccessToken()
@@ -139,9 +153,11 @@ const authSlice = createSlice({
   reducers: {
     logout(state) {
       clearAllTokens()
+      clearRememberPreference()
       clearStoredUser()
       state.user = null
       state.status = 'idle'
+      state.effectivePermissions = []
     },
     setUser(state, action: PayloadAction<AuthUser | null>) {
       state.user = action.payload

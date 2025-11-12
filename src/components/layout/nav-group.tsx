@@ -32,16 +32,35 @@ import {
   type NavLink,
   type NavGroup as NavGroupProps,
 } from './types'
+import { isPathAllowedForRole } from '@/lib/authz'
+import { useSelector } from 'react-redux'
+import type { RootState } from '@/store'
 
 export function NavGroup({ title, items }: NavGroupProps) {
   const { state, isMobile } = useSidebar()
   const href = useLocation({ select: (location) => location.href })
+  const roleId = useSelector((s: RootState) => s.auth.user?.roleId)
+
+  // Filter items by role using centralized rules
+  const visibleItems = useMemo(() => {
+    return items
+      .map((it) => {
+        if (it.items) {
+          const sub = it.items.filter((s) => isPathAllowedForRole(s.url, roleId))
+          return sub.length ? { ...it, items: sub } : null
+        }
+        return isPathAllowedForRole(it.url, roleId) ? it : null
+      })
+      .filter(Boolean) as typeof items
+  }, [items, roleId])
 
   // Single-open accordion behavior within a group
   const initialOpenKey = useMemo(() => {
-    const activeParent = items.find((it) => !!it.items && checkIsActive(href, it, true))
+    const activeParent = visibleItems.find(
+      (it) => !!it.items && checkIsActive(href, it, true)
+    )
     return activeParent ? `${activeParent.title}-${activeParent.url}` : null
-  }, [href, items])
+  }, [href, visibleItems])
   const [openKey, setOpenKey] = useState<string | null>(initialOpenKey)
 
   useEffect(() => {
@@ -49,11 +68,14 @@ export function NavGroup({ title, items }: NavGroupProps) {
     setOpenKey(initialOpenKey)
   }, [initialOpenKey])
 
+  // Hide entire group (including label) if no visible items for this role
+  if (!visibleItems.length) return null
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => {
+        {visibleItems.map((item) => {
           const key = `${item.title}-${item.url}`
 
           if (!item.items)
@@ -198,6 +220,8 @@ function SidebarMenuCollapsedDropdown({
     </SidebarMenuItem>
   )
 }
+
+// No permission filtering; show provided items
 
 function checkIsActive(href: string, item: NavItem, mainNav = false) {
   return (

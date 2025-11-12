@@ -12,11 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as authRouteRouteImport } from './routes/(auth)/route'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
-import { Route as ErrorsUnauthorizedRouteImport } from './routes/errors/unauthorized'
-import { Route as ErrorsNotFoundRouteImport } from './routes/errors/not-found'
-import { Route as ErrorsMaintenanceErrorRouteImport } from './routes/errors/maintenance-error'
-import { Route as ErrorsInternalServerErrorRouteImport } from './routes/errors/internal-server-error'
-import { Route as ErrorsForbiddenRouteImport } from './routes/errors/forbidden'
 import { Route as AuthenticatedRestRouteImport } from './routes/_authenticated/$rest'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as errors500RouteImport } from './routes/(errors)/500'
@@ -36,7 +31,12 @@ import { Route as AuthenticatedMasterSettingsDistributorMappingRouteImport } fro
 import { Route as AuthenticatedMasterSettingsDemarcationRouteImport } from './routes/_authenticated/master-settings/demarcation'
 import { Route as AuthenticatedHrModuleTimeAttendanceRouteImport } from './routes/_authenticated/hr-module/time-attendance'
 import { Route as AuthenticatedHrModuleGpsMonitoringRouteImport } from './routes/_authenticated/hr-module/gps-monitoring'
-import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+import { Route as AuthenticatedErrorsUnauthorizedRouteImport } from './routes/_authenticated/errors/unauthorized'
+import { Route as AuthenticatedErrorsNotFoundRouteImport } from './routes/_authenticated/errors/not-found'
+import { Route as AuthenticatedErrorsMaintenanceErrorRouteImport } from './routes/_authenticated/errors/maintenance-error'
+import { Route as AuthenticatedErrorsInternalServerErrorRouteImport } from './routes/_authenticated/errors/internal-server-error'
+import { Route as AuthenticatedErrorsForbiddenRouteImport } from './routes/_authenticated/errors/forbidden'
+import { Route as AuthenticatedDashboardOverviewRouteImport } from './routes/_authenticated/dashboard/overview'
 import { Route as AuthenticatedDashboardHomeReportRouteImport } from './routes/_authenticated/dashboard/home-report'
 import { Route as AuthenticatedDashboardHeartCountRouteImport } from './routes/_authenticated/dashboard/heart-count'
 import { Route as AuthenticatedSalesSalesOperationsWorkingDayRouteImport } from './routes/_authenticated/sales/sales-operations/working-day'
@@ -75,32 +75,6 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const ErrorsUnauthorizedRoute = ErrorsUnauthorizedRouteImport.update({
-  id: '/errors/unauthorized',
-  path: '/errors/unauthorized',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ErrorsNotFoundRoute = ErrorsNotFoundRouteImport.update({
-  id: '/errors/not-found',
-  path: '/errors/not-found',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ErrorsMaintenanceErrorRoute = ErrorsMaintenanceErrorRouteImport.update({
-  id: '/errors/maintenance-error',
-  path: '/errors/maintenance-error',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ErrorsInternalServerErrorRoute =
-  ErrorsInternalServerErrorRouteImport.update({
-    id: '/errors/internal-server-error',
-    path: '/errors/internal-server-error',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ErrorsForbiddenRoute = ErrorsForbiddenRouteImport.update({
-  id: '/errors/forbidden',
-  path: '/errors/forbidden',
-  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRestRoute = AuthenticatedRestRouteImport.update({
   id: '/$rest',
@@ -209,10 +183,40 @@ const AuthenticatedHrModuleGpsMonitoringRoute =
     path: '/hr-module/gps-monitoring',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedErrorsErrorRoute =
-  AuthenticatedErrorsErrorRouteImport.update({
-    id: '/errors/$error',
-    path: '/errors/$error',
+const AuthenticatedErrorsUnauthorizedRoute =
+  AuthenticatedErrorsUnauthorizedRouteImport.update({
+    id: '/errors/unauthorized',
+    path: '/errors/unauthorized',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedErrorsNotFoundRoute =
+  AuthenticatedErrorsNotFoundRouteImport.update({
+    id: '/errors/not-found',
+    path: '/errors/not-found',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedErrorsMaintenanceErrorRoute =
+  AuthenticatedErrorsMaintenanceErrorRouteImport.update({
+    id: '/errors/maintenance-error',
+    path: '/errors/maintenance-error',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedErrorsInternalServerErrorRoute =
+  AuthenticatedErrorsInternalServerErrorRouteImport.update({
+    id: '/errors/internal-server-error',
+    path: '/errors/internal-server-error',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedErrorsForbiddenRoute =
+  AuthenticatedErrorsForbiddenRouteImport.update({
+    id: '/errors/forbidden',
+    path: '/errors/forbidden',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardOverviewRoute =
+  AuthenticatedDashboardOverviewRouteImport.update({
+    id: '/dashboard/overview',
+    path: '/dashboard/overview',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedDashboardHomeReportRoute =
@@ -375,15 +379,15 @@ export interface FileRoutesByFullPath {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/$rest': typeof AuthenticatedRestRoute
-  '/errors/forbidden': typeof ErrorsForbiddenRoute
-  '/errors/internal-server-error': typeof ErrorsInternalServerErrorRoute
-  '/errors/maintenance-error': typeof ErrorsMaintenanceErrorRoute
-  '/errors/not-found': typeof ErrorsNotFoundRoute
-  '/errors/unauthorized': typeof ErrorsUnauthorizedRoute
   '/': typeof AuthenticatedIndexRoute
   '/dashboard/heart-count': typeof AuthenticatedDashboardHeartCountRoute
   '/dashboard/home-report': typeof AuthenticatedDashboardHomeReportRoute
-  '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/dashboard/overview': typeof AuthenticatedDashboardOverviewRoute
+  '/errors/forbidden': typeof AuthenticatedErrorsForbiddenRoute
+  '/errors/internal-server-error': typeof AuthenticatedErrorsInternalServerErrorRoute
+  '/errors/maintenance-error': typeof AuthenticatedErrorsMaintenanceErrorRoute
+  '/errors/not-found': typeof AuthenticatedErrorsNotFoundRoute
+  '/errors/unauthorized': typeof AuthenticatedErrorsUnauthorizedRoute
   '/hr-module/gps-monitoring': typeof AuthenticatedHrModuleGpsMonitoringRoute
   '/hr-module/time-attendance': typeof AuthenticatedHrModuleTimeAttendanceRoute
   '/master-settings/demarcation': typeof AuthenticatedMasterSettingsDemarcationRoute
@@ -428,15 +432,15 @@ export interface FileRoutesByTo {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/$rest': typeof AuthenticatedRestRoute
-  '/errors/forbidden': typeof ErrorsForbiddenRoute
-  '/errors/internal-server-error': typeof ErrorsInternalServerErrorRoute
-  '/errors/maintenance-error': typeof ErrorsMaintenanceErrorRoute
-  '/errors/not-found': typeof ErrorsNotFoundRoute
-  '/errors/unauthorized': typeof ErrorsUnauthorizedRoute
   '/': typeof AuthenticatedIndexRoute
   '/dashboard/heart-count': typeof AuthenticatedDashboardHeartCountRoute
   '/dashboard/home-report': typeof AuthenticatedDashboardHomeReportRoute
-  '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/dashboard/overview': typeof AuthenticatedDashboardOverviewRoute
+  '/errors/forbidden': typeof AuthenticatedErrorsForbiddenRoute
+  '/errors/internal-server-error': typeof AuthenticatedErrorsInternalServerErrorRoute
+  '/errors/maintenance-error': typeof AuthenticatedErrorsMaintenanceErrorRoute
+  '/errors/not-found': typeof AuthenticatedErrorsNotFoundRoute
+  '/errors/unauthorized': typeof AuthenticatedErrorsUnauthorizedRoute
   '/hr-module/gps-monitoring': typeof AuthenticatedHrModuleGpsMonitoringRoute
   '/hr-module/time-attendance': typeof AuthenticatedHrModuleTimeAttendanceRoute
   '/master-settings/demarcation': typeof AuthenticatedMasterSettingsDemarcationRoute
@@ -484,15 +488,15 @@ export interface FileRoutesById {
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
   '/_authenticated/$rest': typeof AuthenticatedRestRoute
-  '/errors/forbidden': typeof ErrorsForbiddenRoute
-  '/errors/internal-server-error': typeof ErrorsInternalServerErrorRoute
-  '/errors/maintenance-error': typeof ErrorsMaintenanceErrorRoute
-  '/errors/not-found': typeof ErrorsNotFoundRoute
-  '/errors/unauthorized': typeof ErrorsUnauthorizedRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/dashboard/heart-count': typeof AuthenticatedDashboardHeartCountRoute
   '/_authenticated/dashboard/home-report': typeof AuthenticatedDashboardHomeReportRoute
-  '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/dashboard/overview': typeof AuthenticatedDashboardOverviewRoute
+  '/_authenticated/errors/forbidden': typeof AuthenticatedErrorsForbiddenRoute
+  '/_authenticated/errors/internal-server-error': typeof AuthenticatedErrorsInternalServerErrorRoute
+  '/_authenticated/errors/maintenance-error': typeof AuthenticatedErrorsMaintenanceErrorRoute
+  '/_authenticated/errors/not-found': typeof AuthenticatedErrorsNotFoundRoute
+  '/_authenticated/errors/unauthorized': typeof AuthenticatedErrorsUnauthorizedRoute
   '/_authenticated/hr-module/gps-monitoring': typeof AuthenticatedHrModuleGpsMonitoringRoute
   '/_authenticated/hr-module/time-attendance': typeof AuthenticatedHrModuleTimeAttendanceRoute
   '/_authenticated/master-settings/demarcation': typeof AuthenticatedMasterSettingsDemarcationRoute
@@ -539,15 +543,15 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/$rest'
+    | '/'
+    | '/dashboard/heart-count'
+    | '/dashboard/home-report'
+    | '/dashboard/overview'
     | '/errors/forbidden'
     | '/errors/internal-server-error'
     | '/errors/maintenance-error'
     | '/errors/not-found'
     | '/errors/unauthorized'
-    | '/'
-    | '/dashboard/heart-count'
-    | '/dashboard/home-report'
-    | '/errors/$error'
     | '/hr-module/gps-monitoring'
     | '/hr-module/time-attendance'
     | '/master-settings/demarcation'
@@ -592,15 +596,15 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/$rest'
+    | '/'
+    | '/dashboard/heart-count'
+    | '/dashboard/home-report'
+    | '/dashboard/overview'
     | '/errors/forbidden'
     | '/errors/internal-server-error'
     | '/errors/maintenance-error'
     | '/errors/not-found'
     | '/errors/unauthorized'
-    | '/'
-    | '/dashboard/heart-count'
-    | '/dashboard/home-report'
-    | '/errors/$error'
     | '/hr-module/gps-monitoring'
     | '/hr-module/time-attendance'
     | '/master-settings/demarcation'
@@ -647,15 +651,15 @@ export interface FileRouteTypes {
     | '/(errors)/500'
     | '/(errors)/503'
     | '/_authenticated/$rest'
-    | '/errors/forbidden'
-    | '/errors/internal-server-error'
-    | '/errors/maintenance-error'
-    | '/errors/not-found'
-    | '/errors/unauthorized'
     | '/_authenticated/'
     | '/_authenticated/dashboard/heart-count'
     | '/_authenticated/dashboard/home-report'
-    | '/_authenticated/errors/$error'
+    | '/_authenticated/dashboard/overview'
+    | '/_authenticated/errors/forbidden'
+    | '/_authenticated/errors/internal-server-error'
+    | '/_authenticated/errors/maintenance-error'
+    | '/_authenticated/errors/not-found'
+    | '/_authenticated/errors/unauthorized'
     | '/_authenticated/hr-module/gps-monitoring'
     | '/_authenticated/hr-module/time-attendance'
     | '/_authenticated/master-settings/demarcation'
@@ -700,11 +704,6 @@ export interface RootRouteChildren {
   errors404Route: typeof errors404Route
   errors500Route: typeof errors500Route
   errors503Route: typeof errors503Route
-  ErrorsForbiddenRoute: typeof ErrorsForbiddenRoute
-  ErrorsInternalServerErrorRoute: typeof ErrorsInternalServerErrorRoute
-  ErrorsMaintenanceErrorRoute: typeof ErrorsMaintenanceErrorRoute
-  ErrorsNotFoundRoute: typeof ErrorsNotFoundRoute
-  ErrorsUnauthorizedRoute: typeof ErrorsUnauthorizedRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -729,41 +728,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/errors/unauthorized': {
-      id: '/errors/unauthorized'
-      path: '/errors/unauthorized'
-      fullPath: '/errors/unauthorized'
-      preLoaderRoute: typeof ErrorsUnauthorizedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/errors/not-found': {
-      id: '/errors/not-found'
-      path: '/errors/not-found'
-      fullPath: '/errors/not-found'
-      preLoaderRoute: typeof ErrorsNotFoundRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/errors/maintenance-error': {
-      id: '/errors/maintenance-error'
-      path: '/errors/maintenance-error'
-      fullPath: '/errors/maintenance-error'
-      preLoaderRoute: typeof ErrorsMaintenanceErrorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/errors/internal-server-error': {
-      id: '/errors/internal-server-error'
-      path: '/errors/internal-server-error'
-      fullPath: '/errors/internal-server-error'
-      preLoaderRoute: typeof ErrorsInternalServerErrorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/errors/forbidden': {
-      id: '/errors/forbidden'
-      path: '/errors/forbidden'
-      fullPath: '/errors/forbidden'
-      preLoaderRoute: typeof ErrorsForbiddenRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/$rest': {
       id: '/_authenticated/$rest'
@@ -898,11 +862,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHrModuleGpsMonitoringRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/errors/$error': {
-      id: '/_authenticated/errors/$error'
-      path: '/errors/$error'
-      fullPath: '/errors/$error'
-      preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
+    '/_authenticated/errors/unauthorized': {
+      id: '/_authenticated/errors/unauthorized'
+      path: '/errors/unauthorized'
+      fullPath: '/errors/unauthorized'
+      preLoaderRoute: typeof AuthenticatedErrorsUnauthorizedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/errors/not-found': {
+      id: '/_authenticated/errors/not-found'
+      path: '/errors/not-found'
+      fullPath: '/errors/not-found'
+      preLoaderRoute: typeof AuthenticatedErrorsNotFoundRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/errors/maintenance-error': {
+      id: '/_authenticated/errors/maintenance-error'
+      path: '/errors/maintenance-error'
+      fullPath: '/errors/maintenance-error'
+      preLoaderRoute: typeof AuthenticatedErrorsMaintenanceErrorRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/errors/internal-server-error': {
+      id: '/_authenticated/errors/internal-server-error'
+      path: '/errors/internal-server-error'
+      fullPath: '/errors/internal-server-error'
+      preLoaderRoute: typeof AuthenticatedErrorsInternalServerErrorRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/errors/forbidden': {
+      id: '/_authenticated/errors/forbidden'
+      path: '/errors/forbidden'
+      fullPath: '/errors/forbidden'
+      preLoaderRoute: typeof AuthenticatedErrorsForbiddenRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/overview': {
+      id: '/_authenticated/dashboard/overview'
+      path: '/dashboard/overview'
+      fullPath: '/dashboard/overview'
+      preLoaderRoute: typeof AuthenticatedDashboardOverviewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard/home-report': {
@@ -1116,7 +1115,12 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedDashboardHeartCountRoute: typeof AuthenticatedDashboardHeartCountRoute
   AuthenticatedDashboardHomeReportRoute: typeof AuthenticatedDashboardHomeReportRoute
-  AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedDashboardOverviewRoute: typeof AuthenticatedDashboardOverviewRoute
+  AuthenticatedErrorsForbiddenRoute: typeof AuthenticatedErrorsForbiddenRoute
+  AuthenticatedErrorsInternalServerErrorRoute: typeof AuthenticatedErrorsInternalServerErrorRoute
+  AuthenticatedErrorsMaintenanceErrorRoute: typeof AuthenticatedErrorsMaintenanceErrorRoute
+  AuthenticatedErrorsNotFoundRoute: typeof AuthenticatedErrorsNotFoundRoute
+  AuthenticatedErrorsUnauthorizedRoute: typeof AuthenticatedErrorsUnauthorizedRoute
   AuthenticatedHrModuleGpsMonitoringRoute: typeof AuthenticatedHrModuleGpsMonitoringRoute
   AuthenticatedHrModuleTimeAttendanceRoute: typeof AuthenticatedHrModuleTimeAttendanceRoute
   AuthenticatedMasterSettingsDemarcationRoute: typeof AuthenticatedMasterSettingsDemarcationRoute
@@ -1159,7 +1163,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedDashboardHeartCountRoute: AuthenticatedDashboardHeartCountRoute,
   AuthenticatedDashboardHomeReportRoute: AuthenticatedDashboardHomeReportRoute,
-  AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedDashboardOverviewRoute: AuthenticatedDashboardOverviewRoute,
+  AuthenticatedErrorsForbiddenRoute: AuthenticatedErrorsForbiddenRoute,
+  AuthenticatedErrorsInternalServerErrorRoute:
+    AuthenticatedErrorsInternalServerErrorRoute,
+  AuthenticatedErrorsMaintenanceErrorRoute:
+    AuthenticatedErrorsMaintenanceErrorRoute,
+  AuthenticatedErrorsNotFoundRoute: AuthenticatedErrorsNotFoundRoute,
+  AuthenticatedErrorsUnauthorizedRoute: AuthenticatedErrorsUnauthorizedRoute,
   AuthenticatedHrModuleGpsMonitoringRoute:
     AuthenticatedHrModuleGpsMonitoringRoute,
   AuthenticatedHrModuleTimeAttendanceRoute:
@@ -1239,11 +1250,6 @@ const rootRouteChildren: RootRouteChildren = {
   errors404Route: errors404Route,
   errors500Route: errors500Route,
   errors503Route: errors503Route,
-  ErrorsForbiddenRoute: ErrorsForbiddenRoute,
-  ErrorsInternalServerErrorRoute: ErrorsInternalServerErrorRoute,
-  ErrorsMaintenanceErrorRoute: ErrorsMaintenanceErrorRoute,
-  ErrorsNotFoundRoute: ErrorsNotFoundRoute,
-  ErrorsUnauthorizedRoute: ErrorsUnauthorizedRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

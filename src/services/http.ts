@@ -10,6 +10,7 @@ import {
   setAccessToken,
   setRefreshToken,
   clearAllTokens,
+  getRememberPreference,
 } from './tokenService'
 
 const baseURL =
@@ -36,7 +37,8 @@ async function refreshAccessToken(instance: AxiosInstance) {
   if (!payload?.token) throw new Error('Invalid refresh payload')
   setAccessToken(payload.token)
   if (payload.refreshToken && payload.refreshTokenExpiry) {
-    setRefreshToken(payload.refreshToken, payload.refreshTokenExpiry)
+    const session = !getRememberPreference()
+    setRefreshToken(payload.refreshToken, payload.refreshTokenExpiry, session)
   }
   return payload.token as string
 }

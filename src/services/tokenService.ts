@@ -1,6 +1,7 @@
 import { getCookie, setCookie, setSessionCookie, removeCookie } from '@/lib/cookies'
 
 const REFRESH_COOKIE = 'refresh_token'
+const REMEMBER_KEY = 'remember_me_pref'
 
 let accessToken: string | '' = ''
 
@@ -38,4 +39,30 @@ export function clearRefreshToken() {
 export function clearAllTokens() {
   clearAccessToken()
   clearRefreshToken()
+}
+
+// Remember-me preference helpers
+export function setRememberPreference(remember: boolean) {
+  try {
+    localStorage.setItem(REMEMBER_KEY, remember ? '1' : '0')
+  } catch {
+    /* noop */
+  }
+}
+
+export function getRememberPreference(): boolean {
+  try {
+    const v = localStorage.getItem(REMEMBER_KEY)
+    return v === '1'
+  } catch {
+    return false
+  }
+}
+
+export function clearRememberPreference() {
+  try {
+    localStorage.removeItem(REMEMBER_KEY)
+  } catch {
+    /* noop */
+  }
 }
