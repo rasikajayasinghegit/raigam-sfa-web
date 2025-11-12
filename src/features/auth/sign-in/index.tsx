@@ -1,4 +1,5 @@
 import { useSearch } from '@tanstack/react-router'
+import Logo from '@/assets/logo.png'
 import {
   Card,
   CardContent,
@@ -15,6 +16,9 @@ export function SignIn() {
   return (
     <Card className='gap-4'>
       <CardHeader>
+        <div className='mb-8 flex items-center justify-center'>
+          <img src={Logo} alt='Raigam SFA System' width={180} />
+        </div>
         <CardTitle className='text-lg tracking-tight'>Sign in</CardTitle>
         <CardDescription>
           Enter your user name and password below to <br />

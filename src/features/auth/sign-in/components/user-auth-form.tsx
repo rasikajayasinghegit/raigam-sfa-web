@@ -45,7 +45,11 @@ export function UserAuthForm({
   const dispatch = useAppDispatch()
 
   // Use input/output generics to align with zodResolver transformation
-  const form = useForm<z.input<typeof formSchema>, any, z.output<typeof formSchema>>({
+  const form = useForm<
+    z.input<typeof formSchema>,
+    any,
+    z.output<typeof formSchema>
+  >({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: '',
@@ -92,7 +96,7 @@ export function UserAuthForm({
             <FormItem>
               <FormLabel>User Name</FormLabel>
               <FormControl>
-                <Input placeholder='your_username' {...field} />
+                <Input placeholder='User name' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
